@@ -38,47 +38,8 @@ class IndexController extends Zend_Controller_Action
                                 500);
 
     }
-    public function technologyAction()
-    {
-        $this->view->isLoggedIn = $this->isLoggedIn;
-    }
-    public function solutionsAction()
-    {
-        $this->view->isLoggedIn = $this->isLoggedIn;
-    }
     public function indexAction()
     {
-        $this->view->isLoggedIn = $this->isLoggedIn;
-    }
-    public function index2Action(){
-        $this->view->isLoggedIn = $this->isLoggedIn;
-    }
-    public function aboutusAction(){
-
-        $this->view->isLoggedIn = $this->isLoggedIn;
-    }
-    public function jobsAction(){
-
-        $this->view->isLoggedIn = $this->isLoggedIn;
-    }
-    public function loginAction(){
-
-        $this->view->isLoggedIn = $this->isLoggedIn;
-    }
-    public function miniloginAction(){
-
-        $this->view->isLoggedIn = $this->isLoggedIn;
-    }
-    public function pricingAction(){
-
-        $this->view->isLoggedIn = $this->isLoggedIn;
-    }
-    public function productsAction(){
-
-        $this->view->isLoggedIn = $this->isLoggedIn;
-    }
-    public function apiAction(){
-
         $this->view->isLoggedIn = $this->isLoggedIn;
     }
 }
