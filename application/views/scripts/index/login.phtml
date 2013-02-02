@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Algorithms</title>
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<script src="/js/html5.js" type="text/javascript"></script>
+<!-- slider starts -->
+<script type="text/javascript" src="/js/jquery-1.4.2.min.js" charset="utf-8"></script>
+<script src="/js/jquery.cycle.all.min.js" type="text/javascript" charset="utf-8"></script>
+<link rel="shortcut icon" href="/images/icon.ico" type="image/x-icon">
+<link rel="icon" href="/images/icon.ico" type="image/x-icon">
+<script language="javascript">
+ $(document).ready(function(){
+ 	$('div.slides').cycle({ 
+			slideExpr: 'ul.list2 li',
+			fx: 'scrollLeft', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+			pager: '.controls-strip',
+			timeout:  0,
+			pagerAnchorBuilder: function(idx, slide) { 
+			myClass = (idx==0)?' class="activeSlide"':'';
+			return '<a href="#" '+myClass+'></a>'; 
+			}
+		});
+	});
+ </script>
+<!--/ slider ends -->
+</head>
+<body>
+<div class="layout">
+  <!-- header starts -->
+  <header>
+    <div class="header-inner">
+      <div class="logo npl"> <a href="/index/index2"><img width="325" height="58" src="/images/logo.png" alt="logo" /></a></div>
+      <div class="right-div">
+        <div class="sign-in"><a href="/index/login">Sign In </a> | <a href="#"> Register</a> </div>
+        <nav>
+          <ul id="links">
+            <li><a href="/index/index2">Home </a></li>
+            <li><a href="/index/products"> Products </a></li>
+            <li><a href="/index/api"> API </a></li>
+            <li><a href="/index/pricing"> Pricing </a></li>
+            <li><a href="/index/aboutus"> About Us</a></li>
+            <li><a href="/index/jobs"> Jobs </a> </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>  
+  <!-- header ends -->
+  <!-- body starts -->
+  <div class="body-outer">
+    <div class="body">
+    <div class="loginbody">
+    <h1>Login to algorithms</h1>
+     <div class="loginbox">
+     <div class="form">
+     <div class="row">
+     <label>Username :</label>
+     <input type="text" value="" />
+     <div class="cl"></div>
+     </div>
+     <div class="row">
+     <label>Password :</label>
+     <input type="text" value="" />
+     <div class="cl"></div>
+     </div>
+     <div class="row2">
+     <input type="image" src="/images/login-btn.png" value="submit" alt="login" class="fl" />
+     <span>Forgot Password?</span>
+     <div class="cl"></div>
+     </div>
+     
+     </div>
+     <div class="newregister">
+     <h4>are you a new member?</h4>
+     <span>Creating a new account with Costa Rica pages is easy.</span>
+     <a href="#"><img src="/images/register-now.png" alt="Register Now" /></a>
+     </div>
+     <div class="cl"></div>
+     </div>
+     </div>
+      <div class="cl"></div>
+    </div>
+  </div>
+  <!-- body ends -->
+  <!-- footer starts -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <ul class="bottom-links">
+            <li><a href="/index/index2">Home </a></li>
+            <li><a href="/index/products"> Products </a></li>
+            <li><a href="/index/api"> API </a></li>
+            <li><a href="/index/pricing"> Pricing </a></li>
+            <li><a href="/index/aboutus"> About Us</a></li>
+            <li><a href="/index/jobs"> Jobs </a> </li>
+        </ul>
+        <br class="cl" />
+        <p>&copy; Copyright 2012 algorithms.io . All Rights Reserved </p>
+      </div>
+    </div>
+  </footer>
+  <!-- footer ends -->
+</div>
+</body>
+</html>

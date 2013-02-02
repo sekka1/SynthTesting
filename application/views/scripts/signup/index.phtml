@@ -1,0 +1,214 @@
+<? // login/index.phtml ?>
+<? //echo $this->form ?>
+
+  <div class="body-outer">
+    <div class="body">
+    <div class="loginbody">
+    <h3>Sign up for Algorithms.io</h3>
+    <BR>
+<?php
+    // Display beta code errors
+    if( $this->hasSignedUp == 'false' && $this->betaCodeError != '' )
+        echo '<font color="red">'.$this->betaCodeError.'</font>';
+    
+    // Display registered successfully
+    if( $this->hasSignedUp == 'true' ){
+        echo '<font color="red">You have successfully signed up and are now registered.  We will be sending you a verification email shortly. Thanks, for signup up for our system.</font>';
+    }
+?>
+
+    <form id="form_signup" action="/signup/index" method="post">
+        <div class="loginbox">
+<div style="padding-left: 20px; font-weight: bold;">You’ll need an Alpha Code to begin using our system.  <br>Click the request access button to get an Alpha Code.</div> 
+            <div class="form">
+                <div class="row">
+                        <dt id="username-label"><label for="username" class="required">Email:</label></dt>
+                        <dd id="username-element">
+                        <input type="text" name="email" id="username" value="" /></dd>
+                        <div class="cl"></div>
+                <div class="cl"></div>
+            </div>
+            <div class="row">
+                    <dt id="password-label"><label for="password" class="required">Password:</label></dt>
+                    <dd id="password-element">
+                    <input type="password" name="password" id="password" value="" /></dd>
+                <div class="cl"></div>
+            </div>
+
+            <div class="row">                                                                                      
+                    <dt id="password-label"><label for="password" class="required">Alpha Code:</label></dt>        
+                    <dd id="password-element">                                                                     
+                    <input type="text" name="betacode" id="betacode" value="" />
+                    <input type="hidden" name="referer" value="something" id="referer" />
+                    </dd>                          
+                <div class="cl"></div>                                                                             
+            </div> 
+
+            <div class="row2">
+                <input type="checkbox" name="terms" value="1" class="required" checked="true">&nbsp;I agree to terms of service<br><br>
+                <a class="btn btn-large btn-primary" href="javascript:void(0);" onclick="$('#form_signup').submit();">Sign Up</a>
+                <a class="btn btn-large btn-warning" href="/contact/register">Request Access</a>
+                <BR><BR>
+            <div class="cl"></div>    
+        </div>                                                                                                           
+    </form>
+
+     </div>
+     <div class="newregister">
+        <strong>Terms of service</strong><br><form><textarea rows="10" style="width: 350px">
+Terms of Service
+Please read this agreement carefully before using services offered by Algorithms.io (the “Company”).
+A. Recitals
+1. The Company provides the Algorithms.io platform and any other services of the Company subject to these Terms of Service. These Terms of Service (the “Terms of Service”) apply to the Company web site located at Algorithms.io, [the Company API located in Mountain View, California, all the software applications developed, hosted and offered via the Internet by the Company, and all associated sites linked to the Company’s web site by the Company, its subsidiaries and affiliates, including Company sites around the world (collectively, the “Company Services”). The Company Services are the property of Company and its licensors.
+2. By creating an account or using Algorithms.io or any Company Services, you are agreeing to be bound by the Terms of Service. If you do not agree, do not use any of the Company services.
+B. Parties
+1. This is a legal agreement (“Agreement”) between you (the “User”) and the Company for use of any of the Company Services.
+2. Algorithms.io is a Delaware corporation with offices at 800 West El Camino Real, Suite 180, Mountain View, CA 94040.
+3. If you are entering into this Agreement on behalf of a company or other legal entity, you represent that you have the authority to bind such entity, its affiliates and all users who access the Company services through your account to these Terms of Service, in which case the terms “you” or “your” shall refer to such entity, its affiliates and users associated with it. If you do not have such authority, or if you do not agree with these terms and conditions, you must not accept this Agreement and may not use the Company Services.
+4. No agency, partnership, joint venture, employee-employer or franchiser-franchisee relationship between you and Company is intended or created by this Agreement.
+5. Company’s relationship to you is that of an independent contractor, and neither you nor Company is an agent or a partner of the other. Company will not have, and will not represent to any third party that it has, any authority to act on your behalf.
+C. Alpha Testing
+1. The Company Services are currently experimental and operated in an Alpha Testing.
+2. At your request Company has invited you to participate in the Alpha Testing of the Company Services and appreciates your interest.
+3. You understand that the Company Services have not been finalized, that there may be certain bugs or irregularities in the Company Services, and that certain restrictions will apply to the Alpha version of the Company Services.
+4. At this time, the Company makes no promises or guarantees as to its continued ability to provide any or all the Company Services and all the current features to the User.
+5. At this time, the Company makes no promises or guarantees as to the Services availability (i.e., uptime), disaster recovery, system performance, and/or scheduled downtime for maintenance.
+[D. Algorithms.com
+Algorithms.com is composed of a number of software applications that are offered via the Internet through a web site owned and operated by Company. Algorithms.com provides its registered users with an automated method of processing data sources, composed of a number of data instances that can be transformed into datasets, which can subsequently be transformed into predictive models that can then be used to generate predictions for new data instances. You can read more about how Company works in our about us section.
+E. Algorithms.io - The Company API
+Algorithms.io is composed of a number of software applications (the “Applications”). Algorithms.io provides a programmatic way to access most of the functionality the Company offers through Algorithms.com. You can read more about Algorithms.io in our about us section.
+F. License
+1. Subject to the terms of this Agreement, Company hereby grants to the User, during the term of this Agreement, a revocable, royalty-free, non-sub licensable, non-exclusive, non-transferable, limited license to access the Company Services solely for the User’s own purposes.
+2. You will make no attempt to, and will not permit your Users or any other third party to make any attempt to:
+1. Alter, modify, improve, reverse engineer, disassemble, or decompile the Company Services;
+2. Interfere in any manner with the hosting of the Applications or Company Services associated with them;
+3. reproduce, duplicate, or copy any portion of the Company Services, use of the Company Services, or access to the Company Services without the express permission by Company, or
+4. sublicense to, transfer to, or otherwise use Company Services for the benefit of a third party.
+G. Necessary Equipment
+1. The User will be solely responsible, at its own expense, for acquiring, installing, maintaining, and updating all connectivity equipment, hardware, software, ancillary services and other equipment that may be necessary for it and its Users to connect to, access, and use the Company Services including, without limitation, mobile phones, modems, hardware, software, data plans, internet connections, land lines, and long distance or local telephone service.
+2. You shall be responsible for ensuring that your equipment or ancillary services are compatible with the Company Services.
+H. Authorized Users and Uses
+1. Company Services are available only to individuals who have the capacity to form legally binding contracts under the law applicable to these Terms of Service. Furthermore, our services are not available to minors (under 18 years of age). If you do not qualify, you are not permitted to use our services and no contract will be formed between you and the Company. Further, our services are not available to temporarily or indefinitely suspended Company accounts.
+2. You must be a human to access Algorithms.io. All automated or programmatic accesses need to be done through the Company API at Algorithms.io.
+3. You must provide your legal full name, a valid email address, and any other information requested in order to complete the signup process. This information shall not be false, inaccurate, misleading, nor shall you impersonate any person or entity, or falsely state or otherwise misrepresent your affiliation with anyone or anything.
+4. You are solely responsible for safeguarding the password and API key that you use to access the Company Services and for any activities or actions under your password or API key. We encourage you to use “strong” passwords (passwords that use a combination of symbols, numbers, and upper and lower case letters) with your account. Company cannot and will not be liable for any loss or damage from your failure to comply with this security obligation.
+5. You will neither use nor permit others to use your Company account (a) for any unlawful, invasive, infringing, defamatory, fraudulent, or obscene purpose; (b) to create any virus, worm, Trojan horse, or harmful code; (c)for any illegal or unauthorized purpose; (d) to violate any laws in your jurisdiction (including but not limited to patent, copyright, trademark, or other intellectual property laws); or(e) to alter, steal, corrupt, disable, destroy, trespass, or violate any security or encryption of any computer file, database, or network. If you, or a third party through your Company account, violate any of the foregoing prohibitions, Company may immediately suspend the Services and/or terminate this Agreement without further liability or obligation to you. Furthermore, you shall be responsible for the cost of any services/actions Company takes to mitigate any damage caused by such impermissible behavior.
+6. Company Services are not designed or licensed for use in hazardous environments requiring fail-safe controls, or other mission critical application where human life or property may be at stake including, without limitation: operation of nuclear facilities, aircraft navigation/ communication systems, air traffic control, and/or life support or weapons systems. You understand that the Company Services are not designed for such purposes and that its failure in such cases could lead to death, personal injury, or severe property or environmental damage for which Company is not responsible.
+I. General Conditions
+1. Company will use reasonable efforts to ensure that the Company Services are available twenty-four hours a day, seven days a week. However, there will be occasions when the Services will be interrupted for maintenance, upgrades, emergency repairs, failure of telecommunications systems, equipment failures, acts of god, or other situations. Company will make reasonable efforts to minimize such disruption where it is within Company’s reasonable control. You agree that Company will not be liable in any event to you or any other party for any suspension, modification, discontinuance, lack of availability, or other termination of the Company Services.
+2. You acknowledge and accept that there may be technical downtime with Company services. Such downtime or errors may prevent your datasets, models or predictions being created, viewed or accessible. Company shall not be liable if the creation or access to any dataset, model or prediction is delayed, prevented from access or displayed incorrectly by any cause beyond our control including server downtime.
+3. You agree that your access and use of the Company Services is at your own risk.
+4. You understand and agree that the Company Services are provided to you on an “AS IS” and “AS AVAILABLE” basis.
+5. Without limiting the foregoing, COMPANY MAKES NO WARRANTIES OR CONDITIONS, EXPRESS OR IMPLIED, BY OPERATION OF LAW OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY IMPLIED WARRANTIES OF TITLE, NONINFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE, OR ANY IMPLIED WARRANTY ARISING OUT OF THIS AGREEMENT.
+6. The Company does not warrant that (i) the Company Services will meet your specific requirements, (ii) the Company Services will be uninterrupted, timely, secure, error-free or virus-free, (iii) the results that obtained from the use of the Company Services will be accurate or reliable, (iv) that the quality of any products, services, information, or other material purchased or obtained by you through the Company Services will meet your expectations, and/or (v) that any errors in the Company Services will be corrected. The Company disclaims all responsibility and liability for the completeness, accuracy, availability, timeliness, security or reliability of the Company Services. No advice or information, whether oral or written, obtained from Company or through the Company Services, will create any warranty not expressly made herein.
+7. Company will not be responsible or liable for any harm to your computer system, loss of data, or other harm of any kind to you, your users or any other third party that results from your access to or use of the Services. You agree that Company has no responsibility or liability to you, your users, or any other third party for the deletion of, or the failure to store or to transmit any data and/or any other communications maintained by the Services, or any partial or inaccurate transmission of data.
+8. You agree that you will not use any device, software or routine to interfere or attempt to interfere with the proper working of the Company Services.
+9. You may not use any “deep-link”, “page-scrape”, “robot”, “spider” or other automatic device, program, algorithm or methodology, or any similar or equivalent manual process, to access, acquire, copy or monitor any portion of Algorithms.io, or in any way reproduce or circumvent the navigational structure or presentation of Algorithms.io, to obtain or attempt to obtain any materials, documents or information through any means not purposely made available through Algorithms.io. Company reserves the right to bar any such activity.
+10. You may not attempt to gain unauthorized access to any portion or feature of the Company Services, or any other systems or networks connected to the Company Services or to any Company server, or to any of the services offered on or through the Company Services, by hacking, password “mining” or any other illegitimate means.
+11. You may not probe, scan or test the vulnerability of the Company Services or any network connected to the Company Services, nor breach the security or authentication measures on the Company Services or any network connected to the Company Services. You may not reverse look-up, trace or seek to trace any information on any other user of or visitor to the Company Services, or any other customer of Company, including any Company account not owned by you, to its source, or exploit the Company Services or any service or information made available or offered by or through the Company Services, in any way where the purpose is to reveal any information, including but not limited to personal identification or information, other than your own information, as provided for by the Company Services.
+12. You agree that you will not take any action that imposes an unreasonable or disproportionately large load on the infrastructure of the Company Services or Company’s systems or networks, or any systems or networks connected to the Company Services or to Company.
+13. You may not forge headers or otherwise manipulate identifiers in order to disguise the origin of any message or transmittal you send to the Company Services on or through the Company.com, Company.io or any service offered on or through the Company Services. You may not pretend that you are, or that you represent, someone else, or impersonate any other individual or entity.
+14. If you have not used your Company account in the last twelve (12) months to create new datasets or models or make predictions, Company reserves the right to suspend your account and delete all data sources and your datasets out. All the models and generated predictions will remain in the Company systems until you delete them or your account is canceled or terminated.
+15. Company reserves the right at any time to suspend temporarily or permanently your Company account with or without notice.
+16. Abuse or excessively frequent requests to Company Services may result in the temporary or permanent suspension of your Company account’s access to the API. Company, in its sole discretion, will determine abuse or excessive usage of the API. Company will make a reasonable attempt via email to warn the account owner prior to suspension.
+17. We may change, discontinue or deprecate any APIs for the Company Services from time to time but will use commercially reasonable efforts to continue supporting the previous version of any API changed, discontinued, or deprecated for 12 months after the change, discontinuation, or deprecation (except if doing so (a) would pose a security or intellectual property issue, (b) is economically or technically burdensome, or (c) is needed to comply with the law or requests of governmental entities).
+18. Company reserves the right at any time to modify or discontinue, temporarily or permanently, your access to the API (or any part thereof) with or without notice.
+19. If your bandwidth usage significantly exceeds the average bandwidth usage (as determined solely by Company) of other Company customers, we reserve the right to immediately throttle your access until you can reduce your bandwidth consumption. Please send us a request for premium service access if you foresee you might need special bandwidth usage.
+J. Your Data, Equipment and Models
+1. You understand that all data that you input, post, transmit, stream or upload to the Company Services are your sole responsibility. This means that you, and not Company, are entirely responsible for all data that you input, upload, post, stream, transmit or otherwise make available via Your Account. Company does not control the Data analyzed or modeled via the Company Services and, as such, does not guarantee the accuracy, integrity or quality of such data.
+2. To use the Company Services, you must be the owner, have the rights to use the data, or use public data for all data sources that you create within the Company.
+3. Your data sources cannot be obtained by fraud, involve the use of counterfeit or stolen data, or have been obtained by other unlawful or morally repugnant method.
+4. Your data sources cannot infringe any third party's copyright, patent, trade mark, trade secret or other proprietary rights or privacy laws. Your data sources cannot violate any law, statute, ordinance or regulation (including without limitation those governing export control or consumer protection).
+5. Your data sources cannot create liability for us or cause us to lose (in whole or in part) the services of our ISPs or other suppliers.
+6. Your data is considered confidential information by Company. Notwithstanding the foregoing, a party receiving confidential information will not be in violation of this agreement regarding a disclosure that was in response to a valid order by a court or other governmental body nor will Company be in violation if it discovers that the User intends to use Company services to further an impermissible purpose or to commit or plan a crime.
+7. As between the parties, you retain all right, title, and interest in and to any of your equipment and data you input into the Company Services.
+8. If you use public data or public datasets as input to create your models you understand that many other Company users might create identical datasets or models to yours.
+9. If you have not used your datasets to create new models in the last 12 months, Company reserves the right to delete them out of our systems as set forth below.
+K. Blind Meta Data Collection
+1. Company retains the right to use data capture and analysis tools to extract, compile, synthesize, and analyze any non-personally identifiable data or information resulting from the User’s use of Company Services and Applications (“Blind Meta Data”). To the extent that any Blind Data are collected by Company, that Blind Data will be solely owned by Company and may be used by Company for any lawful business purpose without a duty of accounting to You if the Blind Data are used only in an aggregated form without specifically identifying the source of the Blind Data.
+2. Company retains the right to access and use blind meta level data generated during the creation of your sources, datasets, models, and predictions. These data are collected for the purpose of improving our services over time. For example, we measure how much time tasks take, the size of data that you use, the type of each attribute in your dataset, the performance of the models generated.
+3. Company does not inspect or access any detail of your sources, datasets, models, or predictions.
+4. Company does not disclose or distribute any data to a third party or use any such data for marketing purposes. Please read our Privacy Policy for more details.
+L. Refunds and Invoices
+1. Refund requests should be made in writing to the Company.
+2. Company reserves the right to refuse a refund request if it reasonably believes:
+1. that you are misusing this refund policy;
+2. if you are in breach of these Terms of Service; or
+3. if Company reasonably suspects that you are using Company services fraudulently or that your Company Account is being used by a third party fraudulently.
+1. Refund payments will be made in the same form and to the same entity as the original payment.
+2. Company will send you an invoice to the email account you have provided for each purchase of Company Services.
+M. Ownership
+1. You retain all right, title, and interest in and to any user equipment and data that you input.
+2. All right, title, and interest in and to the Company Services, (excluding data provided by you) are and will remain the exclusive property of Company and its licensors. The Company Services are protected by copyright, trademark, and other laws of both the United States and foreign countries. Nothing in the Terms of Service gives you a right to use the Company name or any of the Company trademarks, logos, domain names, and other distinctive brand features.
+3. Company retains all right, title, and interest in and to all software, materials, blind meta data and Company proprietary information and technology used by Company, or provided to you, in connection with the Company Services, including without limitation the applications, documentation, and any and all improvements, updates, and modifications to them, and including all Intellectual Property rights to them. Company reserves any rights or licenses not expressly granted to you under this Agreement.
+4. You acknowledge that the ownership in any intellectual property rights (including, for the avoidance of doubt, patents, copyright, rights in databases, trademarks and trade names whether registered or unregistered and subsisting anywhere in the world) in the Company Services belongs to Company or its third party licensors. Accordingly, any part of the Company Services (or its source HTML or any other code) may not be used, transferred, copied or reproduced in whole or in part in any manner other than for the purposes of utilizing the Company Services, meaning that you may only display it on your computer screen and print it out on your printer for the sole purpose of viewing its content in connection with the Services.
+5. Patents: One or more patents owned by the Company or its affiliates may apply to the Company Services and to the features and services accessible via the Company API.
+6. Trademarks: One or more trademarks owned by the Company or its affiliates may apply to the Company Services and to the features and services accessible via the Company API.
+7. Copyright: All content included on the Company Service, such as text, graphics, logos, button icons, images, audio clips, digital downloads, data compilations, and software, is the property of Company or its content suppliers and protected by United States and international copyright laws. The compilation of all content on the Company Services is the exclusive property of Company and protected by U.S. and international copyright laws. All software used on the Company Site is the property of Company or its software suppliers and protected by United States and international copyright laws.
+8. Feedback and Information: Any feedback, comments, or suggestions you may provide regarding the Company, or the Services is entirely voluntary and shall be deemed to be non-confidential. Company shall be free to use such feedback, comments or suggestions on an unrestricted basis and as we see fit without any obligation to you.
+N. Privacy & Security
+1. Your privacy and the protection of your data are very important to us. We recommend you review our Privacy Policy, which is incorporated into this agreement and will help you understand how we collect, use and safeguard the information you provide to us.
+2. The best security practices drive everything we do. If you have any questions, or encounter any issues, please contact us at terms@algorithms.io.
+O. Cancellation, Termination or Modification
+1. This Agreement is effective immediately upon creation of a Company account or any use of the Company Services and will remain effective until you cancel your account or until Company terminates your account as set forth below.
+2. You can delete your account and all its associated data at any time by clicking on the Delete Account link in the account section https://Company.com/account. This section provides a simple no questions asked cancellation button. You must provide your password which helps ensure that your account is not canceled without your permission. You are solely responsible for properly canceling your account. An email or phone request to cancel your account is not considered cancellation.
+3. All of your data will be immediately deleted from the Company upon cancellation. This information cannot be recovered once your account is cancelled.
+4. If you cancel the Service before you request a refund, your cancellation will take effect immediately and your unused Company Services will be forfeited.
+5. Termination of Company Services results in the deletion of your account and all data.
+6. Company reserves the right to refuse service to anyone for any reason at any time. Company, in its sole discretion, retains the right to suspend or terminate your account and/or refuse any and all current or future use of the Company Services, for any reason at any time. Without limiting other remedies, Company may immediately issue a warning, temporarily suspend, indefinitely suspend or terminate your account and/or refuse to provide the Company Services to you if:
+1. You breach any of the Terms of Service;
+2. Company is unable to verify or authenticate any information you provide to us to create your Company account; and or
+3. Company believes that your actions are impermissible or may create legal liability for us.
+1. Termination of the Company Services for these circumstances results in the deletion of your account and all data as well as forfeiture of unused Company Services.
+2. Abuse or excessively frequent requests to Company Services may result in the temporary or permanent suspension of your account. Company, in its sole discretion, will determine abuse or excessive usage.
+3. Company reserves the right at any time to modify or discontinue, temporarily or permanently, your access to the API (or any part thereof) with or without notice.
+4. Company may change, suspend or discontinue the Company Services totally or partially for any reason, at any time, including the availability of any feature. Company may also impose limits on certain features and services or restrict your access to parts or all of the Company Services without notice or liability.
+5. Company may change, discontinue or deprecate any APIs for the Services from time to time.
+6. If your bandwidth usage significantly exceeds the average bandwidth usage (as determined solely by Company) of other Company customers, we reserve the right to immediately throttle your access until you can reduce your bandwidth consumption. Please send us a request for premium service access if you foresee you might need special bandwidth usage.
+7. Except for the aforementioned circumstances, Company will not delete you models or predictions until you delete them, you cancel your Company account or it is terminated.
+8. Unless earlier terminated as provided above, this Agreement will remain in effect until terminated, at will, by either party.
+P. Limitation of Liability
+1. Company will not be liable for special, incidental, direct, or consequential damages arising out of or in connection with this Agreement, including, but not limited to, interrupted communications, lost data, or lost profits, even if Company has been advised of the possibility of such damages, and notwithstanding the failure of the essential purpose of any limited remedy in this Agreement.
+2. Company aggregate liability arising out of your use of the Company Services will not exceed the greater of one hundred dollars ($100) or the amount you have paid us in the past three months.
+3. Applicable law may not allow the limitation or exclusion of liability or incidental or consequential damages, so the above limitation or exclusion may not apply to you. In such cases, Company’s liability will be limited to the fullest extent permitted by applicable law.
+4. You expressly understand and agree that Company shall not be liable for any direct, indirect, incidental, special, consequential or exemplary damages, including but not limited to, damages for loss of profits, goodwill, use, data or other intangible losses (even if Company has been advised of the possibility of such damages), resulting from your use of the API or third-party products that access data via the API.
+Q. Hold Harmless and Indemnity
+1. To the maximum extent permitted by applicable law, you agree to hold harmless and indemnify Company, and its employees, officers, agents, or other partners from and against any third party claim arising from or in any way related to your use of the Company Services (including anything you develop using Company.io), including any liability or expense arising from all claims, losses, damages (actual and/or consequential), suits, judgments, litigation costs and attorneys' fees, of every kind and nature including but not limited to any liability arising from or resulting by your data imputed into Company including infringement of intellectual property laws or civil or criminal claims. Company shall use good faith efforts to provide you with written notice of such claim, suit or action. In addition, you expressly waive and relinquish any and all rights and benefits which you may have under any other state or federal statute or common law principle of similar effect, to the fullest extent permitted by law.
+2. You acknowledge that you will be solely and fully responsible for all liabilities incurred through the use of Company Services. You will defend, indemnify, and hold Company, its employees, officers, agents, or other partners from and against any third-party claims arising from or in any way related to any Company Services, including any liability or expense arising from all claims, losses, damages (actual and/or consequential), suits, judgments, litigation costs and attorneys' fees, of every kind and nature. If anyone brings a claim against Company related to your actions, data or information on Company, you will indemnify and hold Company harmless from and against all damages, losses, and expenses of any kind (including reasonable legal fees and costs) related to such claim.
+R. Assignment
+1. You will not transfer any of your rights or obligations under the Terms of Service to anyone else without Company written consent. Any purported attempt to do so without that consent is null and void.
+2. All of our rights and obligations under the Terms of Service are freely assignable by Company in connection with a merger, acquisition, or sale of assets, or by operation of law or otherwise.
+S. Notices and Electronic Notices
+1. All notices, consents, or approvals required or permitted by this Agreement shall be in writing and shall be deemed effective upon receipt, by Company when sent by confirmed e- mail to terms@algorithms.io or when delivered by nationally recognized overnight courier or mailed by first class, registered or certified mail, postage prepaid, to the Company, 800 West El Camino Real, Suite 180, Mountain View, CA 94040.
+2. All notices, consents, or approvals required or permitted by this Agreement shall be in writing and shall be deemed effective upon receipt, by you when sent by confirmed e-mail to the email address you provide or when delivered by nationally recognized overnight courier or mailed by first class, registered or certified mail, postage prepaid, to the physical address you have provided.
+3. When you visit the Company website or send e-mails to us, you are communicating with us electronically. You consent to receive communications from us electronically. You agree that all agreements, notices, disclosures and other communications that we provide to you electronically satisfy any legal requirement that such communications be in writing.
+T. Special Provisions Applicable to Users Outside the United States
+1. You consent to having your personal data transferred to and processed in the United States.
+2. If you are located in a country embargoed by the United States, or are on the U.S. Treasury Department's list of Specially Designated Nationals you are not allowed to create a Company account or use the Company Services.
+U. General Provisions
+1. All waivers must be in writing. The failure of Company to exercise or enforce any right or provision of this Agreement shall not constitute a waiver of such right or provision or any other right or provision on any other occasion.
+2. If any provision of this Agreement is unenforceable, that provision will be changed and interpreted to accomplish the objectives of the provision to the greatest extent possible under applicable law, and the remaining provisions will continue in full force and effect.
+3. Headings are for reference purposes only and in no way define, limit, construe or describe the scope or extent of such section.
+4. This Agreement may be executed in counterparts, each of which will be considered an original, but all of which together constitute the same instrument.
+5. Some jurisdictions do not allow the exclusion of certain warranties or the exclusion or limitation of liability for consequential or incidental damages, so the limitations above may not apply to you.
+6. The laws of your country may be different from those of California and the United States in numerous respects. There is no practical way for Company to monitor the laws of every country in detail. You accept sole responsibility for the legality of your actions under laws applying to you.
+7. Any pre-printed terms on your purchase order are expressly rejected by Company and will be given no force or effect.
+8. This Agreement will be governed by and construed in accordance with the laws of the state of California, U.S.A., without regard to California’s conflict-of-laws principles. The parties expressly disclaim the United Nations Convention on Contracts for the International Sale of Goods, and the provisions thereof will not govern this Agreement. The parties agree that any claim asserted in any legal proceeding by one party against the other will be commenced and maintained exclusively in the courts of Santa Clara County or the Northern District of California. Both parties hereby submit to the jurisdiction of such courts over each of them personally in connection with such litigation, and waive any objection to venue in such courts and any claim that such forum is an inconvenient forum.
+9. This Agreement constitutes the entire agreement between you and Company and governs your use of the Company Services, superseding any prior agreements or contemporaneous agreements between you and Company.
+10. Unless explicitly stated otherwise, any new features that augment or enhance the current Company Services, including the release of new tools and resources, shall be subject to the Terms of Service.
+11. Company reserves the right, at its sole discretion, to change, modify, add or remove portions of this Agreement, at any time. It is your responsibility to check this Agreement periodically for changes. Your continued use of the Company Services following the posting of changes will mean that you accept and agree to the changes. If you do not agree to the new terms, please stop using the Company Services.
+12. Violation of any of the terms above will result in the termination of your Company account.
+13. Questions about the Terms of Service should be sent to terms@algorithms.io.
+Terms of Service – Algorithms.io
+
+
+      </textarea></form>
+
+     </div>
+     <div class="cl"></div>
+     </div>
+     </div>
+      <div class="cl"></div>
+    </div>
+      <BR><BR>
+  </div>

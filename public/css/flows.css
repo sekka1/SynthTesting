@@ -1,0 +1,339 @@
+.flowGrid_old {
+	position: relative;
+	background-color: #FFa;
+	border: 1px solid black;
+	width:100%; 
+	min-height: 600px; 
+	height: 80%; 
+	overflow: auto;
+}
+
+.flowGrid {
+    /* Basically a duplicate of class "well" */
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: whiteSmoke;
+    border: 1px solid #EEE;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.flowGridScratchContainer {
+    margin-top: 10px;
+    background-color: #FFD;
+    border: 1px solid #EEE;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);    
+}
+
+.flowGridScratch {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	min-height: 600px;
+	overflow:auto;
+}
+
+.flowMenu {
+	position: relative;
+	border: 1px solid #EEE;
+	border-left: 0px;
+	border-right: 0px;
+	background-color: #fff;
+	height: 90px;
+}
+
+.flowMenuTitle {
+	zbackground-color: #142B4A;
+	color: #fff;
+}
+
+.flowMenuIcon {
+	width: 60px;
+	height: 60px;
+	zborder: 1px solid #f0f;
+	border: 1px solid transparent;
+	background: url(/images/flows/database-icon.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	float: left;
+}
+
+.flowMenuIconShell {
+	float: left;
+	width: 60px;
+	border: 1px solid transparent;
+	padding: 3px;
+	zheight: 80px;
+}
+
+.flowMenuIconShell:hover {
+	border: 1px dashed #00f;
+}
+
+.flowMenuIconTitle {
+	position: absolute;
+	float: left;
+	width: 60px;
+	font-size: 8pt;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+	bottom: 1px;
+        white-space: nowrap;
+}
+
+
+.flowDBIcon {
+	background-image: url(/images/flows/database-icon.png);
+}
+.flowStreamIcon {
+	background-image: url(/images/flows/stream-icon2.png);
+}
+.flowFilterIcon {
+	background-image: url(/images/flows/filter-icon.png);
+}
+.flowMapperIcon {
+	background-image: url(/images/flows/mapper-icon2.png);
+}
+.flowAlgorithmIcon {
+	background-image: url(/images/flows/gears.png);
+}
+.flowInterfaceIcon {
+	background-image: url(/images/flows/pie-icon.png);
+}
+.flowMergeIcon {
+	background-image: url(/images/flows/arrow_merge.png);
+}
+.flowTestIcon {
+	width: 50px;
+	height: 50px;
+	zborder: 1px solid #f0f;
+	border: 1px solid transparent;
+	background: url('/images/flows/database-icon.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	/* background-attachment: fixed; */
+	background-position: center center;
+	float: left;
+}
+
+
+.flowIcon {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	border: 1px solid transparent;
+	/*background: url(/images/flows/database-icon.png); */
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	float: left;
+}
+
+.flowIcon:hover {
+	border: 1px dotted #00f;
+}
+
+.flowIcon.selected {
+	background-color: #fff;
+	border: 1px solid #00f;
+}
+
+.flowPlaceholder {
+	background-image: url('/images/flows/stop_red.png');
+	background-size: 75%;
+
+}
+
+.flowIconTitle {
+	position: absolute;
+	bottom: 1px;
+	width: 100%;
+	text-align: center;
+}
+
+.flowArrow {
+	position: absolute;
+	right: -50px;
+}
+
+.flowArrowRight {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border: 1px solid transparent;
+	background-image: url('/images/flows/arrow_right.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	right: -30px;
+	top: 50px;
+	z-index: 5; /* So it appears on top of icons */
+}
+
+.flowEditMenuButtons {
+	position: absolute;
+	bottom: -20px;
+	width: 100%;
+	text-align: center;
+}
+
+.flowEditButton {
+	position: relative;
+	border: 1px solid #000;
+	background-size: 10px;
+	background-repeat: no-repeat;
+	/* background-attachment: fixed; */
+	background-position: center center;
+
+}
+
+.flowEditButton.insert {
+	background-color: #ff0;
+	width: 70px;
+	float: left;
+}
+.flowEditButton.edit {
+	background-color: #0f0;
+	width: 70px;
+	float: right;
+}
+.flowEditButton.delete {
+	border: 0px;
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	zbackground-color: #f00;
+	background-image: url('/images/glyphicons/glyphicons_192_circle_remove_red_bevel.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	width: 26px;
+	height: 26px;
+}
+
+.hidden {
+	display: hidden;
+}
+
+
+/* Mapper CSS */
+.drag-locked { border:1px solid red; }
+._jsPlumb_endpoint { z-index:50; }
+._jsPlumb_connector { z-index:1; }
+.dropHover { border:1px dotted red; }
+.dragActive { border:2px dotted orange; }
+.cmdLink { font-size:0.80em;}
+#clear { padding:0.3em; }
+#clear:hover { background-color:yellow; }
+#list { display:none; border-bottom:1px dotted grey; padding-bottom:1.5em; font-size:90%;}
+#list table { width:100%; text-align:left;}
+#explanation { text-align:center; }
+
+.mapper_scratch {
+    height: 300px;
+    width: 98%;
+    border: 1px solid black;
+    position:relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #FFA;
+    padding: 10px;
+}
+
+.mapper_field_left {
+    border:1px solid gray; 
+    width:14em; 
+    height:6em; 
+    color: #000;
+    
+    font-size:0.9em;
+    text-align:center;
+    z-index:501;
+    background-color:white;
+    -o-box-shadow: 0px 0px 17px #444;
+    -webkit-box-shadow: 0px 0px 17px #444; 
+    -moz-box-shadow: 0px 0px 17px #444;
+    box-shadow: 0px 0px 17px #444;
+    margin-bottom: 1em;
+}
+
+.mapper_field_right {
+    border:1px solid gray; 
+    width:14em; 
+    height:6em; 
+    color: #000;
+    
+    font-size:0.9em;
+    text-align:center;
+    z-index:501;
+    background-color:white;
+    -o-box-shadow: 0px 0px 17px #444;
+    -webkit-box-shadow: 0px 0px 17px #444; 
+    -moz-box-shadow: 0px 0px 17px #444;
+    box-shadow: 0px 0px 17px #444;
+    margin-bottom: 1em;
+}
+
+.mapper_field_name {
+    color: #fff;
+    padding: 3px;
+    font-weight: bold;
+    background-color: #152B4C;
+}
+
+.mapper_field_type {
+    color: #666;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.mapper_field_sample {
+    color: #999;
+    font-style: italic;
+    font-weight: normal; 
+}
+
+.mapper_scratch_left {
+    float: left;
+    width: 14em;
+}
+
+.mapper_scratch_right {
+    float: right;
+    width: 14em;
+}
+
+.mapper_field_left_title {
+    width: 14em;
+    background-color: white;
+    position: relative;
+    left: 0px;
+    border-width: 1px 1px 0px 1px;
+    border-color: black;
+    border-style: solid;
+    float: left;
+    text-align: center;
+}
+
+.mapper_field_right_title {
+    width: 16em;
+    background-color: white;
+    position: relative;
+    right: 0px;
+    border-width: 1px 1px 0px 1px;
+    border-color: black;
+    border-style: solid;
+    float: right;
+    text-align: center;
+}

@@ -1,0 +1,62 @@
+<? // login/index.phtml ?>
+<? //echo $this->form ?>
+
+  <div class="body-outer">
+    <div class="body">
+    <div class="loginbody">
+    <form id="contact_us" action="/contact/confirm" method="post">
+    <h3>Thank You for Your Interest</h3>
+    <BR>
+
+        <div class="loginbox">
+<div style="padding-left: 20px; font-weight:bold;">Fill out the form and we will get back to you as soon as we can.</div>
+            <div class="form" style="height: 300px;">
+                <div class="row">
+                        <dt id="username-label"><label for="name" class="required">Full Name:</label></dt>
+                        <dd id="username-element">
+                        <input type="text" name="name" id="name" value="" /></dd>
+                        <div class="cl"></div>
+
+                        <dt id="username-label"><label for="email" class="required">Email:</label></dt>
+                        <dd id="username-element">
+                        <input type="text" name="email" id="email" value="" /></dd>
+                        <div class="cl"></div>
+
+                        <dt id="username-label"><label for="company" class="required">Company:</label></dt>
+                        <dd id="username-element">
+                        <input type="text" name="company" id="company" value="" /></dd>
+                        <div class="cl"></div>
+
+                        <dt id="username-label"><label for="phone" class="required">Phone:</label></dt>
+                        <dd id="username-element">
+                        <input type="text" name="phone" id="phone" value="" /></dd>
+                        <div class="cl"></div>
+
+                        <input type="hidden" name="wantbeta" id="wantbeta" value="1" checked="true" /></dd>
+                        <div class="cl"></div>
+
+                <div class="cl"></div>
+            </div>
+
+
+            <div class="row2">
+                <a class="btn btn-large btn-primary" href="javascript:void(0);" onclick="$('#contact_us').submit();">Contact Us</a>
+                <BR><BR>
+            <div class="cl"></div>    
+        </div>                                                                                                           
+
+     </div>
+<div class="newregister"> 
+<dt id="username-label"><label>What would you like more information about?</label></dt>
+<textarea name="info" rows="10" style="width: 350px" name="info"></textarea>
+
+</div>
+     <div class="cl">
+    </div>
+     </div>
+     </div>
+      <div class="cl"></div>
+    </div>
+      <BR><BR>
+    </form>
+  </div>

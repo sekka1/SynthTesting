@@ -1,0 +1,183 @@
+<?php ?>
+<? //require_once realpath(dirname(__FILE__).'/inc/config.php'); ?>
+<? require_once ('AlgorithmsIO/config.php'); ?>
+<? 
+
+//$wizard_height="500px";
+global $GLOBALS;
+//$GLOBALS["htmllinktags"] = <<<EOS
+$htmllinktags = <<<EOS
+<!-- Bootstrap CSS Toolkit styles -->
+<link rel="stylesheet" href="/css/fileupload/bootstrap.min.css">
+<!-- Bootstrap styles for responsive website layout, supporting different screen sizes -->
+<link rel="stylesheet" href="/css/fileupload/bootstrap-responsive.min.css">
+<!-- Bootstrap CSS fixes for IE6 -->
+<!--[if lt IE 7]><link rel="stylesheet" href="/css/fileupload/bootstrap-ie6.min.css"><![endif]-->
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet" href="/css/fileupload/jquery.fileupload-ui.css">
+<!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
+<!--[if lt IE 9]><script src="/js/html5.js"></script><![endif]-->
+
+<link rel="stylesheet" type="text/css" href="/css/flexigrid/flexigrid.pack.css" />
+                
+EOS;
+#<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+$javascript = <<<EOS
+<script src="/js/bootstrap-tab.js"></script>
+<script src="/js/algo.js"></script>
+<SCRIPT src="/js/algo_flows.js"></SCRIPT>
+<SCRIPT src="/js/jsPlumb/jquery.jsPlumb-1.3.11-all-min.js"></SCRIPT>
+<SCRIPT src="/js/algo_mapper.js"></SCRIPT>
+EOS;
+
+/*
+echo pageheader(array(
+	"htmllinktags"	=>$htmllinktags,
+	"javascript"	=>$javascript,
+        "header_off"    =>"true"
+));
+ */ 
+?>
+<SCRIPT>
+(function($){ 
+     $.fn.extend({  
+         pwdstr: function(el) {			
+			return this.each(function() {
+					
+					
+					
+					$(this).keyup(function(){
+						$(el).html(getTime($(this).val()));
+					});
+					
+					function getTime(str){
+					
+					var chars = 0;
+					var rate = 2800000000;
+					
+					if((/[a-z]/).test(str)) chars +=  26;
+					if((/[A-Z]/).test(str)) chars +=  26;
+					if((/[0-9]/).test(str)) chars +=  10;
+					if((/[^a-zA-Z0-9]/).test(str)) chars +=  32;
+
+					var pos = Math.pow(chars,str.length);
+					var s = pos/rate;
+					
+					var decimalYears = s/(3600*24*365);
+					var years = Math.floor(decimalYears);
+					
+					var decimalMonths =(decimalYears-years)*12;
+					var months = Math.floor(decimalMonths);
+					
+					var decimalDays = (decimalMonths-months)*30;
+					var days = Math.floor(decimalDays);
+					
+					var decimalHours = (decimalDays-days)*24;
+					var hours = Math.floor(decimalHours);
+					
+					var decimalMinutes = (decimalHours-hours)*60;
+					var minutes = Math.floor(decimalMinutes);
+					
+					var decimalSeconds = (decimalMinutes-minutes)*60;
+					var seconds = Math.floor(decimalSeconds);
+					
+					var time = [];
+					
+					if(years > 0){
+						if(years == 1)
+							time.push("1 year, ");
+						else
+							time.push(years + " years, ");
+					}
+					if(months > 0){
+						if(months == 1)
+							time.push("1 month, ");
+						else
+							time.push(months + " months, ");
+					}
+					if(days > 0){
+						if(days == 1)
+							time.push("1 day, ");
+				 		else
+							time.push(days + " days, ");
+					}
+					if(hours > 0){
+						if(hours == 1)
+							time.push("1 hour, ");
+						else
+							time.push(hours + " hours, ");
+					}
+					if(minutes > 0){
+						if(minutes == 1)
+							time.push("1 minute, ");
+						else
+							time.push(minutes + " minutes, ");
+					}
+					if(seconds > 0){
+						if(seconds == 1)
+							time.push("1 second, ");
+						else
+							time.push(seconds + " seconds, ");
+					}
+					
+					if(time.length <= 0)
+						time = "less than one second, ";
+					else if(time.length == 1)
+						time = time[0];
+					else
+						time = time[0] + time[1];
+
+					 return time.substring(0,time.length-2);
+					}
+					
+			 });
+        } 
+    }); 
+})(jQuery); 
+
+function confirmPasswordMatch() {
+    if($('#newpassword').val()==$('#confirmpassword').val()) {
+        $('#button_save').removeClass('disabled');
+    } else {
+        $('#button_save').addClass('disabled');
+    }
+    
+}
+
+$(function (){
+    $('#newpassword').pwdstr('#passwordStrength');
+});
+
+</SCRIPT>
+<!-- 
+<div id="button_container" style="margin-left: 5px;">
+    <div class="button-back"><a href="javascript:void(0);" onclick="window.history.back();"><?=$this->localization->buttons->backtext; ?></a></div>
+    <div class="button-spacer"></div>
+</div>
+<BR clear=all> <BR clear=all>
+-->
+<FORM name="form_preferences" id="form_preferences" action="/preferences/save" method="POST">
+<DIV class="well">
+    <h1>Preferences</h1>
+    <BR>
+    <LABEL id="label_firstName" for="firstName">First Name</LABEL>
+    <INPUT TYPE="text" NAME="firstName" id="firstName" value="<?=$this->user->get_firstName();?>"><BR>
+    <LABEL id="label_lastName" for="lastName">Last Name</LABEL>
+    <INPUT TYPE="text" NAME="lastName" id="lastName" value="<?=$this->user->get_lastName();?>"><BR>
+    <LABEL id="label_username" for="username">Username</LABEL>
+    <INPUT TYPE="text" NAME="username" id="username" value="<?=$this->user->get_username();?>" disabled><BR>
+    <LABEL id="label_oldpassword" for="oldpassword">Old Password</LABEL>
+    <INPUT TYPE="password" NAME="oldpassword" id="oldpassword" value=""><BR>    
+    <LABEL id="label_newpassword" for="newpassword">New Password</LABEL>
+    <INPUT TYPE="password" NAME="newpassword" id="newpassword" value="" onkeyup="confirmPasswordMatch();" onfocus="$('#passwordStrengthContainer').slideDown('slow');" onblur="$('#passwordStrengthContainer').slideUp('slow');confirmPasswordMatch();"><BR>
+    <DIV id="passwordStrengthContainer" style="display:none;">Your password can be broken in <SPAN id="passwordStrength">less than one second</SPAN>.</DIV>
+    <LABEL id="label_confirmpassword" for="oldpassword">Confirm Password</LABEL>
+    <INPUT TYPE="password" NAME="confirmpassword" id="confirmpassword" value="" onkeyup="confirmPasswordMatch();"><BR>    
+</DIV>
+</FORM>
+
+<div id="button_container" style="margin-left: 5px;">
+    <div class="button-general" id="button_save"><a href="javascript:void(0);" onclick="$('#form_preferences').submit();"><img src="/images/glyphicons/glyphicons_232_cloud_white.png" class="button-general-icon"><?=$this->localization->buttons->SaveAlgorithmtext; ?></a></div>
+</div>
+<BR clear=all> <BR clear=all>

@@ -1,0 +1,139 @@
+<div class="layout">
+  <!-- body starts -->
+  <div class="body-outer">
+    <div class="body">
+  <!-- aboutus box -->	      
+   <div class="about-box">
+   <h3> Dataset</h3>
+
+  <div class="api-box-2">
+
+
+<!-- boostrap scaffolding -->
+    <div class="container-fluid">
+<div class="row-fluid">
+<div class="span2">
+<!--Sidebar content-->
+<ul>
+  <li>Basic Usage</li>
+    <ul>
+      <li><a href="/docs/restapi">REST API</a></li>
+      <li><a href="/docs/dataset">Dataset</a></li>
+      <li><a href="/docs/algorithms">Algorithms</a></li>
+      <li><a href="/docs/credits">Credits</a></li>
+    </ul>
+  <li>Recommendation</li>
+    <ul>
+      <li><a href="/docs/collaborativefiltering">Collaborative Filtering</a></li>
+    </ul>
+  <li><a href="/docs/clustering">Clustering</a></li>
+  <li><a href="/docs/classification">Classification</a></li>
+  <li><a href="/docs/mapreduce">Map Reduce Jobs</a></li>
+  <li><a href="/docs/pig">Pig Jobs</a></li>
+  <li><a href="/docs/workflow">Workflow</a></li>
+</ul>
+
+</div>
+<div class="span10">
+<!-- Main Content Area -->
+
+<p>The REST endpoint /dataset allows you to perform the following actions on your datasets:</p>
+
+1. Upload a file<br/>
+2. List all your files<br/>
+3. Get a specific file<br/>
+4. Delete a file<br>
+<p><b><i>Please note that you cannot use cut&paste with these commands. Also please note that the sample test file can be found by clicking <a href="docs.google.com">Movie Lens</a></b></i></p>
+<p>To upload a file, use the "curl" command:
+<pre>curl -i  -H "authToken: &LT;authToken&GT;"
+        -H "type:rec"
+        -H "name:Movie_Lens_100k" 
+        -H "description:100k rows of user prefs" 
+        -H "version:1" 
+        -F theFile=@Movie_Lens_100k_data.csv
+        https://v1.api.algorithms.io/dataset
+    </pre>
+</p>
+
+
+<p>To list all your files, use the "curl" command:
+<pre>
+curl -H "authToken:  &LT;authToken&GT; "
+https://v1.api.algorithms.io/dataset
+
+  </pre>
+<p.>
+The returned result is: <br>
+<pre>
+{
+    "api":{
+        "Authentication":"Success"},
+        "data":[{
+            "id":2033,
+            "name":"Movie_Lens_100k",
+            "type":"rec",
+            "location":"S3,algorithms.io",
+            "filesystem_name":"38_7b4812ca873a3b45af14e65d8827a0d4",
+            "version":"1",
+            "ip_address":"10.2.14.197",
+            "size":"2837831",
+            "description":"100k rows of user prefs",
+            "default_cost":null,
+            "default_cost_method":null,
+            "created":"2012-07-29 19:37:28",
+            "last_modified":"2012-07-29 19:37:28",
+            "user":{"id":38}},
+        }
+    ]
+} 
+
+</pre>
+</p>
+
+
+<p>To get a specific file, use the "curl" command:
+  <pre>
+curl -H "authToken:  &LT;authToken&GT;"
+https://v1.api.algorithms.io/dataset/id/FILE_ID
+
+  </pre>
+<p.>
+The returned result is: <br>
+<pre>
+[{
+    "data":"user,item,pref\r\n196,Kolya 1996,3\r\n186,L.A. Confidential 1997,3\r\n22,Heavyweights 1994,1\r\n244,Legends of the Fall 1994,2\r\n166,Jackie Brown 1997,1\r\n298,Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb 1963,4\r\n115,Hunt for Red October The 1990,2\r\n253,Jungle Book The 1994,5\r\n305,Grease 1978,3\r\n6,Remains of the Day The 1993,3\r\n62,Men in Black 1997,2\r\n286,Romy and Michele's High School Reunion 1997,5\r\n200,Star Trek: First Contact 1996,5\r\n210,To Wong Foo Thanks for Everything! Julie Newmar 1995,3\r\n224,Batman Forever 1995,3\r\n303,Only You 1994,3\r\n122,Age of Innocence The 1993,5\r\n194,Sabrina 1995,2\r\n291,Just Cause 1995,4\r\n234,Endless Summer 2 The 1994,2\r\n119,Man Without a Face The 1993,4\r\n167,Sabrina 1954,4\r\n299,Die Hard 1988,4\r\n291,Twister 1996,2\r\n308,Toy Story 1995,4\r\n95,Broken Arrow 1996,2\r\n38,Aladdin 1992,5\r\n102,Casper 1995,2\r\n63,Restoration 1995,4\r\n160,Jaws 197......
+]}
+</pre>
+</p>
+
+
+
+<p>To delete a file, use the "curl" command: <br> 
+<pre>curl -X DELETE 
+     -H "authToken:  &LT;authToken&GT;" 
+    https://v1.api.algorithms.io/dataset/id/FILE_ID
+  </pre>
+<p.>
+The returned result is: <br>
+<pre>
+{"result":"Success"} 
+</pre>
+</p>
+
+    
+
+<!-- bootstrap scaffolding -->
+ </div>
+</div>
+</div>
+
+
+
+  </div>
+    <div class="cl"></div>
+   </div>   
+  <!-- aboutus box box -->	      
+    <div class="cl"></div>
+   </div>
+  </div>
+</div>

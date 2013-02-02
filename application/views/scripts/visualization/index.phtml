@@ -1,0 +1,113 @@
+<?php ?>
+<? //require_once realpath(dirname(__FILE__).'/inc/config.php'); ?>
+<? require_once ('AlgorithmsIO/config.php'); ?>
+<? 
+//$wizard_height="500px";
+global $GLOBALS;
+
+$API_JS = $this->API_URL."Jssdk/?authToken=".$this->token;
+
+$javascript = <<<EOS
+<script type="text/javascript" src="/js/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.9.0.custom.js"></script>
+<script type="text/javascript" src="$API_JS"></script> 
+EOS;
+
+if($this->showHeader) {
+$htmllinktags = <<<EOS
+<link rel="stylesheet" href="/css/dashboard.css">
+<!-- Bootstrap CSS Toolkit styles -->
+<link rel="stylesheet" href="/css/fileupload/bootstrap.min.css">
+<!-- Bootstrap styles for responsive website layout, supporting different screen sizes -->
+<link rel="stylesheet" href="/css/fileupload/bootstrap-responsive.min.css">
+<!-- Bootstrap CSS fixes for IE6 -->
+<!--[if lt IE 7]><link rel="stylesheet" href="/css/fileupload/bootstrap-ie6.min.css"><![endif]-->
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet" href="/css/fileupload/jquery.fileupload-ui.css">
+<!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
+<!--[if lt IE 9]><script src="/js/html5.js"></script><![endif]-->
+
+<link rel="stylesheet" type="text/css" href="/css/flexigrid/flexigrid.pack.css" />
+<link rel="stylesheet" href="/js/codemirror/codemirror.css">
+EOS;
+#<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+echo pageheader(array(
+	"htmllinktags"	=>$htmllinktags,
+	"javascript"	=>$javascript,
+        "body_css"      =>"max", // Break out of the template width bindings
+        "nav_tab"       =>"results",    
+        "view"          =>$this    
+)); 
+} else { ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-Equiv="Cache-Control" Content="no-cache">
+    <meta http-Equiv="Pragma" Content="no-cache">
+    <meta http-Equiv="Expires" Content="0">
+    <title>Visualization</title>
+</head>
+<BODY>
+<?=$javascript;?>
+<? 
+}
+
+if (isset($this->visualization_id)) {
+    $visid = $this->visualization_id;
+} else {
+    $visid = 1;
+}
+?>
+<SCRIPT>
+<? if($visid) {
+    //echo "var myIDE = new visualizationIDE($visid);\n";
+    //echo "myIDE.retrieve();\n";
+} else {
+    //echo "var myIDE = new visualizationIDE();\n";
+    //echo "var myIDE = new visualizationIDE(null);\n";
+}?>
+var algoSDK;
+var datasource_id = <?=$this->datasource_id;?>;
+
+$(function (){
+    algoSDK = new AlgorithmsIO_SDK();
+    var displayVisualization = function(v) {
+        console.log("DEBUG201210091414: ",v);
+        // First we see if there is a style, if not we add one
+        if($('style').length == 0) {
+            $('head').append('<style></style>');   
+        }
+        $('style').append(v.CSSCode);
+        <? if ($this->showHeader) { ?>
+        $('.body-outer').append(v.HTMLCode);
+        $('.body-outer').append(v.sourceCode);
+        <? } else { ?>
+        $('body').append(v.HTMLCode);
+        var jsCode = '<SCRIPT>'+v.sourceCode+'</'+'SCRIPT>';
+        var test = function() { 
+            //$('body').append("HELLO");
+            console.log("DEBUG201211021714: jsCode="+jsCode);
+            $('body').append(jsCode); 
+        }
+        setTimeout(test,2000);
+        //$('body').append(jsCode);
+        <? } ?>
+        console.log("DEBUG201210091420: END");
+    }
+    algoSDK.getVisualization(<?=$this->visualization_id;?>).then(displayVisualization);
+});
+
+</SCRIPT>
+<!-- REMOVE ME -->
+
+<!-- END REMOVE ME -->
+<? if($this->showFooter) { ?>
+<!--
+<?=$this->jobEntity->get_id();?>
+<?=$this->visualization_id;?>
+-->
+<BR><BR>
+<? echo pagefooter(); ?>
+<? } /* end footer */ ?>

@@ -1,0 +1,66 @@
+<?php 
+
+$params = array(
+    "Text Document"     => array(
+                                "description"   => "A text document containing the words hello and world.",
+                                "datatype"      => "text",
+                                "minlength"     => "500B",
+                                "maxlength"     => "0",
+                                "mustcontain"   => "/hello.*world/i",
+                            ),
+    "Words and Distance"=> array(
+                                "description"   => "A three deminsional array containing a word, another word, and the distance between them.",
+                                "datatype"      => "array",
+                                "children" => array(
+                                    "word1" => array(
+                                                        "description"   => "An english word",
+                                                        "datatype"      => "text",
+                                                        "minlength"     => "1B",
+                                                        "maxlength"     => "45B",
+                                                        "comment"       => "See http://en.wikipedia.org/wiki/Longest_word_in_English for longest word",
+                                                ),
+                                    "word2" => array(
+                                                        "description"   => "An english word",
+                                                        "datatype"      => "text",
+                                                        "minlength"     => "1B",
+                                                        "maxlength"     => "45B",
+                                                        "comment"       => "See http://en.wikipedia.org/wiki/Longest_word_in_English for longest word",
+                                                ),
+                                    "distance" => array(
+                                                        "description"   => "A real integer distance between the two above words",
+                                                        "datatype"      => "real",
+                                                        "minvalue"     => "0.000000000001",
+                                                        "maxvalue"     => "10000000000000",
+                                                ),                                    
+                                ),
+                                "deminsions"    => "3",
+                            ),
+    
+);
+
+function paramToJsonArray($params) {
+    $return = array();
+    foreach ($params as $key=>$value) {
+        //echo $key."<BR>";
+        if(isset($params[$key]["children"])) {
+            // Call recursive to get children
+            $children = paramToJsonArray($params[$key]["children"]);
+            $attr = $params[$key];
+            unset($attr["children"]);
+            $return[]=array(
+                "data"      =>$key." [".$params[$key]["datatype"]."]",
+                "children"  =>$children, 
+                "metadata"  =>$params[$key],
+            );
+        } else {
+            $return[]=array(
+                "data"      =>$key." [".$params[$key]["datatype"]."]",
+                "metadata"  =>$params[$key],
+            );
+        }
+    }
+    return $return;
+}
+
+echo json_encode(paramToJsonArray($params)); 
+?>

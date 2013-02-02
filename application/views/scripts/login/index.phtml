@@ -1,0 +1,72 @@
+<? // login/index.phtml ?>
+<? //echo $this->form ?>
+
+<script language="javascript">
+ $(document).ready(function(){
+     
+    $("#password").keyup(function(event){
+        if(event.keyCode == 13){
+            $('#form_login').submit();
+        }
+    });
+
+    $("#username").keyup(function(event){
+        if(event.keyCode == 13){
+            $('#password').focus();
+        }
+    });
+});
+
+
+
+ </script>
+  <!-- body starts -->
+  <div class="body-outer">
+    <div class="body">
+    <div class="loginbody" style="height: 400px;">
+    <h3><? if(getenv('APPLICATION_ENV') != "production") { echo strtoupper(getenv('APPLICATION_ENV'))." "; } ?>Sign In To Your Account</h3>
+    <BR>
+    <form id="form_login" enctype="application/x-www-form-urlencoded" action="/login/process?f=/dashboard/index" method="post">
+        <div class="loginbox" style="height:300px">
+            <div style="padding-left: 20px; font-weight:bold;">Your account information was provided to you. <br>Forgetful? Click the forgot password button.</div>
+            <div class="form">
+                <div class="row">
+                        <dt id="username-label"><label for="username" class="required" style="white-space: nowrap;">Email:</label></dt>
+                        <dd id="username-element">
+                        <input type="text" name="username" id="username" value="" /></dd>
+                        <div class="cl"></div>
+                <div class="cl"></div>
+            </div>
+            <div class="row">
+                    <dt id="password-label"><label for="password" class="required">Password:</label></dt>
+                    <dd id="password-element">
+                    <input type="password" name="password" id="password" value="" />
+                    <input type="hidden" name="referer" value="something" id="referer" />
+                    </dd>
+                <div class="cl"></div>
+            </div>
+            <div class="row2" style="padding: 0px;">
+                    <div class="button-spacer"></div>
+                    <div class="button-spacer"></div>
+                    <div class="button-spacer"></div>
+                    <a class="btn btn-large btn-primary" href="javascript:void(0);" onclick="$('#form_login').submit();">Sign In</a>
+                    <div class="button-spacer"></div>
+                    
+                    <a class="btn btn-large btn-primary" href="/login/forgotpass">Forgot Password</a>
+            <div class="cl"></div>                                                                                           
+        </div>                                                                                                           
+    </form>
+
+     </div>
+     <div class="newregister">
+     <h4>Are You A New Member?</h4>
+     <span>Sign up for an Alpha Code to begin using Algorithms.io</span>
+     <a class="btn btn-large btn-warning" href="/contact/register">Request Access</a>
+     </div>
+     <div class="cl"></div>
+     </div>
+     </div>
+      <div class="cl"></div>
+    </div>
+      <BR><BR><BR>
+  </div>

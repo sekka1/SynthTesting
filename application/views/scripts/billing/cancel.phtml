@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Algorithms</title>
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<script src="/js/html5.js" type="text/javascript"></script>
+<!-- slider starts -->
+<script type="text/javascript" src="/js/jquery-1.4.2.min.js" charset="utf-8"></script>
+<script src="/js/jquery.cycle.all.min.js" type="text/javascript" charset="utf-8"></script>
+<script language="javascript">
+ $(document).ready(function(){
+ 	$('div.slides').cycle({ 
+			slideExpr: 'ul.list2 li',
+			fx: 'scrollLeft', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+			pager: '.controls-strip',
+			timeout:  0,
+			pagerAnchorBuilder: function(idx, slide) { 
+			myClass = (idx==0)?' class="activeSlide"':'';
+			return '<a href="#" '+myClass+'></a>'; 
+			}
+		});
+	});
+ </script>
+<!--/ slider ends -->
+</head>
+<body>
+<div class="layout">
+  <!-- header starts -->
+  <header>
+    <div class="header-inner">
+      <div class="logo npl"> <a href="/index/index2"><img width="325" height="58" src="/images/logo.png" alt="logo" /></a></div>
+      <div class="right-div">
+        <div class="sign-in"><a href="/login/index">Sign In </a> | <a href="/signup/index"> Register</a> </div>
+        <nav>
+          <ul id="links">
+            <li><a href="/index/index2">Home </a></li>
+            <li><a href="/index/products"> Products </a></li>
+            <li><a href="/index/api"> API </a></li>
+            <li><a href="/index/pricing"> Pricing </a></li>
+            <li><a href="/index/aboutus"> About Us</a></li>
+            <li><a href="/index/jobs"> Jobs </a> </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- header ends -->
+  <!-- body starts -->
+  <div class="body-outer">
+    <div class="body">
+  <!-- aboutus box -->	      
+   <div class="about-box">
+   <h3>Sorry that you want to cancel your order</h3>
+        <p>Do you have any questions?</p>
+        <br/>
+        <br/>
+
+    <div class="cl"></div>
+   </div>   
+  <!-- aboutus box box -->	      
+    <div class="cl"></div>
+   </div>
+  </div>
+  <!-- body ends -->
+  <!-- footer starts -->
+  <footer>
+    <div class="footer-inner">
+      <div class="bottom-logo"> <img src="/images/bottom-logo.png" width="106" height="26" alt="bottom logo" /></div>
+      <div class="footer-left">
+        <ul class="bottom-links">
+            <li><a href="/index/index2">Home </a></li>
+            <li><a href="/index/products"> Products </a></li>
+            <li><a href="/index/api"> API </a></li>
+            <li><a href="/index/pricing"> Pricing </a></li>
+            <li><a href="/index/aboutus"> About Us</a></li>
+            <li><a href="/index/jobs"> Jobs </a> </li>
+        </ul>
+        <br class="cl" />
+        <p>&copy; Copyright 2012 algorithms.io . All Rights Reserved </p>
+      </div>
+    </div>
+  </footer>
+  <!-- footer ends -->
+</div>
+</body>
+</html>

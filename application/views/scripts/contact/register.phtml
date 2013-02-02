@@ -1,0 +1,99 @@
+<? // login/index.phtml ?>
+<? //echo $this->form ?>
+
+  <div class="body-outer">
+    <div class="body">
+    <div class="loginbody">
+    <form id="register" action="/contact/confirm" method="post">
+    <h3>Want To Join The Community?  Request Access Today</h3>
+    <BR>
+    <input type="hidden" name="register" value="1">
+        <div class="loginbox">
+            <div style="padding-left: 20px; font-weight: bold;">You’ll need to request access to begin using our system.  <br>Fill out the form below and we will review your request for access. </div>
+            <div class="form">
+                <div class="row">
+                        <dt id="username-label"><label for="name" class="required">Full Name:</label></dt>
+                        <dd id="username-element">
+                        <input type="text" name="name" id="name" value="" /></dd>
+                        <div class="cl"></div>
+
+                        <dt id="username-label"><label for="email" class="required">Email:</label></dt>
+                        <dd id="username-element">
+                        <input type="text" name="email" id="email" value="" /></dd>
+                        <div class="cl"></div>
+
+                        <dt id="username-label"><label for="company" class="required">Company:</label></dt>
+                        <dd id="username-element">
+                        <input type="text" name="company" id="company" value="" /></dd>
+                        <div class="cl"></div>
+
+                        <dt id="username-label"><label for="phone" class="required">Phone:</label></dt>
+                        <dd id="username-element">
+                        <input type="text" name="phone" id="phone" value="" /></dd>
+                        <div class="cl"></div>
+                        
+                        <dd style="padding-left: 84px;" id="username-element">
+                        <select name="phrase1">
+                        <option>I am a...</option>
+                        <option>App Developer</option>
+                        <option>Algorithm Expert</option>
+                        <option>Data Scientist</option>
+                        <option>Business Analyst</option>
+                        <option>Researcher</option>
+                        <option>Media Expert</option>
+                        <option>Other</option>
+                        </select>
+                        </dd>
+                        <div class="cl"></div>
+                       
+                        <dd style="padding-left: 84px;" id="username-element">
+                        <select name="phrase2">
+                        <option>I plan to...</option>
+                        <option>Use API for app development</option>
+                        <option>Use Your Data Infrastructure</option>
+                        <option>Create or host Algorithms </option>
+                        <option>Explore my data</option>
+                        <option>Work with you</option>
+                        <option>Other</option>
+                        </select>
+                        </dd>
+                        <div class="cl"></div>
+
+                        <dd style="padding-left: 84px;" id="username-element">
+                        <select name="phrase3">
+                        <option>I heard about you from...</option>
+                        <option>A friend</option>
+                        <option>An article</option>
+                        <option>Internet Search</option>
+                        <option>Other</option>
+                        </select>
+                        </dd>
+                        <div class="cl"></div> 
+                        <dd id="username-element">
+                        <input type="hidden" name="wantbeta" id="wantbeta" value="1" checked="true" /></dd>
+
+                <div class="cl"></div>
+            </div>
+
+
+            <div style="padding-left: 80px">
+                <a class="btn btn-large btn-warning" href="javascript:void(0);" onclick="$('#register').submit();">Request Access</a>
+                <BR><BR>
+            <div class="cl"></div>    
+        </div>                                                                                                           
+
+     </div>
+<div class="newregister"> 
+<dt id="username-label"><label>Anything else you'd like us to know?</label></dt>
+<textarea name="info" rows="10" style="width: 350px" name="info"></textarea>
+
+</div>
+     <div class="cl">
+    </div>
+     </div>
+     </div>
+      <div class="cl"></div>
+    </div>
+      <BR><BR>
+    </form>
+  </div>

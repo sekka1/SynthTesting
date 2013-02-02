@@ -1,0 +1,143 @@
+<?php
+// Creates the arbitrary mapping that Mahout needs
+
+class ArbitraryMaping
+{
+    private $auth;
+    private $generic;
+    private $s3;
+    private $debug;
+    private $datasources;
+    private $mapping;
+    private $noSQL;
+
+    public function __construct(){
+
+        $this->debug = false;
+
+        // Model for generic database table
+        Zend_Loader::loadClass('Generic');
+        $this->generic = new Generic();
+
+        Zend_Loader::loadClass( 'S3Usage' );
+        $this->s3 = new S3Usage();
+    
+        Zend_Loader::loadClass( 'DataSources' );
+        $this->datasources = new DataSources();
+
+        Zend_Loader::loadClass( 'Mapping' );
+        $this->mapping = new Mapping();
+
+        Zend_Loader::loadClass( 'NoSQL' );
+        $this->noSQL = new NoSQL();
+    }
+    public function setDebugTrue(){
+
+        $this->debug = true;
+    }
+    public function createXToIdMapping( $request_vars ){
+
+        $datasource_id_seq = $request_vars->getParam( 'datasource_id_seq' );
+        $userOwnsFile = json_decode( $this->datasources->userOwnsFile( $request_vars ), true );
+
+        if( is_numeric( $datasource_id_seq ) && $userOwnsFile['results'] > 0 ){
+
+
+            // Get Count of number of items for this $datasource_id_seq
+            $result = $this->getCount( 'Datasources', $datasource_id_seq, 0 );
+            $count = 10;//$result;
+            $amount_to_work_on = 4;
+echo "<br/>Total Items: ".$result."<br/>";
+echo "count: ".$count."<br/>";
+
+            if( $count > 0 ){
+
+                $curent_count = 0;
+
+                // Get the mapping that the user has provided for the user and item fields
+                $userFieldMappings = json_decode( $this->mapping->getUserFields( $request_vars ), true );
+
+                // Work on X number at a time
+                while( $curent_count < $count ){
+/*
+                    // Get a set of items to work on
+                    $result = $this->noSQL->getItemsRange( 'Datasources', $datasource_id_seq, $amount_to_work_on, $curent_count );
+//print_r( $result );
+                    foreach( $result['Items'] as $anItem ){
+echo '<br/>Working on item: '.$anItem['item_id_seq']['N'].'<br/>';
+                        //
+                        // Check if the User mapping is in the DB, if not then put it in there MySQL
+                        //
+                        $results_user = $this->getTemp_XToIdMappingTable( $datasource_id_seq, 'user', $anItem[$userFieldMappings[0]['field_user_id']]['S'] );
+                        $Temp_XToIdMapping_id_seq_user = '-1';
+
+                        if( count( $results_user ) == 0 ){
+                            // Not in DB yet, insert into the DB and get the id_seq number for this item
+                            $Temp_XToIdMapping_id_seq_user = $this->putTemp_XToIdMappingTable( $datasource_id_seq, 'user', $anItem[$userFieldMappings[0]['field_user_id']]['S'] );
+                        }else{
+                            // Was in MySQL DB, use this value
+                            $Temp_XToIdMapping_id_seq_user = $results_user[0]['id_seq'];
+                        }
+
+                        //
+                        // Check if the Item mapping is in the DB, if not then put it in there MySQL                                                                  
+                        //
+                        $results_item = $this->getTemp_XToIdMappingTable( $datasource_id_seq, 'item', $anItem[$userFieldMappings[0]['field_item_id']]['S'] );
+                        $Temp_XToIdMapping_id_seq_item = '-1';
+
+                        if( count( $results_item ) == 0 ){                                                                                                            
+                            // Not in DB yet, insert into the DB and get the id_seq number for this item                                                              
+                            $Temp_XToIdMapping_id_seq_item = $this->putTemp_XToIdMappingTable( $datasource_id_seq, 'item', $anItem[$userFieldMappings[0]['field_item_id']]['S'] );
+                        }else{
+                            // Was in MySQL DB, use this value
+                            $Temp_XToIdMapping_id_seq_item = $results_item[0]['id_seq'];
+                        }
+echo 'User: '.$Temp_XToIdMapping_id_seq_user.' -- Item: '.$Temp_XToIdMapping_id_seq_item.'<br/>';
+                        //
+                        //  Add the new attributes to this item
+                        //
+                        $outcome = $this->noSQL->updateItemArbitraryAttributes( 'Datasources', $datasource_id_seq, $anItem['item_id_seq']['N'], $Temp_XToIdMapping_id_seq_user, $Temp_XToIdMapping_id_seq_item );
+
+echo 'Dynamo update: ' . $outcome .'<br/>';
+*/
+                    }
+
+                    $curent_count += $amount_to_work_on;
+
+                    sleep(1);
+                }
+
+                //
+                // Delete all the entries for this datasource_id_seq in the Temp_XToIdMapping table
+                //
+            }
+        }
+
+        return '[]';
+    }
+    public function getTemp_XToIdMappingTable( $datasource_id_seq, $type, $value ){
+        // Gets an item from this temp DB
+
+        $query = 'SELECT id_seq FROM Temp_XToIdMapping WHERE datasource_id_seq = '.$datasource_id_seq.' AND type = "'.$type.'" AND value = "'.$value.'"';
+echo '<br/>'.$query.'<br/>';
+
+        $results = $this->generic->customQuery( 'Temp_XToIdMapping', $query );
+
+        return $results;
+    }
+    public function putTemp_XToIdMappingTable($datasource_id_seq, $type, $value ){
+        // Puts an item into this temp DB
+
+        $data['datasource_id_seq'] = $datasource_id_seq;
+        $data['type'] = $type;
+        $data['value'] = $value;
+        $data['datetime_created'] = 'NOW()';
+        $data['datetime_modified'] = 'NOW()';
+
+        $returnVal = $this->generic->save( 'Temp_XToIdMapping', $data );
+    }
+    public function get_count( $datasource_id_seq ){
+
+        $query = "SELECT id_seq FROM ";
+    }
+}

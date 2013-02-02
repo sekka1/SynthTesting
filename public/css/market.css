@@ -1,0 +1,155 @@
+
+.market-item {
+    position: relative;
+    background-color: #fff;
+    margin: 0px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.market-item-summary {
+    display: inline-block;
+    width: 820px;
+    height: 160px;
+    zborder: 1px solid #888;
+    padding: 5px;
+    padding-left: 15px;
+}
+.market-item-title {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 20px;
+    color: #0000C0;
+}
+.market-item-slogan {
+    font-size: 14px;
+    padding-bottom: 15px;
+}
+.market-item-description {
+    padding-bottom: 5px;
+}
+.market-cost {
+    text-align: center;
+    padding-top: 4px;
+}
+.market-rating {
+    zborder: 1px solid #f0f;
+    position: relative;
+    width: 103px;
+    height: 20px;
+}
+.star {
+    float: left;
+    width: 14px;
+    height: 14px;
+    background-image: url(/images/glyphicons/glyphicons_049_star.png);
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 3px;
+    opacity: .2;
+}
+
+.marketDetailsContainer {
+    display: none;
+}
+.label.tag {
+    background-image: url(/images/glyphicons/glyphicons_065_tag.png);
+    background-position-y: center;
+    background-position-x: 3px;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    padding: 4px;
+    padding-left: 20px;
+    margin-right: 5px;
+}
+.label.tag:hover {
+    background-color: #64B5D4;
+}
+.market-numrun {
+    padding-top: 3px;
+    text-align: center;
+    white-space: nowrap;
+    zborder: 1px solid #0ff;
+}
+.market-numrun img {
+    width: 16px;
+    zborder: 1px solid red;
+}
+.marketIconContainer {
+    zdisplay: inline-block;
+    float: left;
+    width: 103px;
+    height: 150px;
+}
+.marketIcon {
+	width: 100px;
+	height: 100px;
+        border: 1px solid #DDD;
+	zborder: 1px solid transparent;
+	background: url(/images/flows/database-icon.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	zfloat: left;
+        
+}
+.DBIcon {
+	background-image: url(/images/flows/database-icon.png);
+}
+.StreamIcon {
+	background-image: url(/images/flows/stream-icon2.png);
+}
+.AlgorithmIcon {
+	background-image: url(/images/flows/gears.png);
+}
+.InterfaceIcon {
+	background-image: url(/images/flows/pie-icon.png);
+}
+.FlowsIcon {
+        background-image: url(/images/flows/flow-icon.png);
+}
+.bggreen {
+    background-color: #9F9;
+}
+
+.button-market-item-details {
+  float: right;
+  margin: 5px 0;
+  padding: 0;
+  position: relative;
+}
+.button-market-item-details a {
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  position: relative;
+  margin: 0;
+  padding: 7px 14px 0 14px;
+  background: #142B4B; 
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: bold;
+  -moz-border-radius: 40px 40px 40px 40px;
+  -webkit-border-radius: 40px 40px 40px 40px; 
+  border-radius: 40px 40px 40px 40px;
+  border-color: #808080;
+  border-width: 0px;
+  white-space: nowrap;
+}
+.button-market-item-details a:hover {
+  background:#64B5D4;
+}
+
+.medal {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+.medal.gold {
+    background-size: 20px 20px;
+    background-image: url(/images/medals/medal_gold_1.png);
+    background-repeat: no-repeat;
+    background-position-y: center;
+}

@@ -1,0 +1,14 @@
+/* 
+    Document   : overrides
+    Created on : Dec 10, 2012, 10:40:20 AM
+    Author     : mark
+    Description:
+        Overrides other settings found in imported CSS files
+*/
+
+/* Override bootstrap which negatively effects the size of selects in the dialog search popup in jqGrid */
+.searchFilter select { 
+    width: auto;
+}
+
+

@@ -1,0 +1,12 @@
+
+Licenses or Replacement Art Needed:
+
+http://www.psdgraphics.com/psd-icons/pie-chart-icon-psd/
+
+start_blue.png: Play Button 
+http://icongal.com/gallery/icon/32123/128/right_start_player_play
+
+stop_red.png: Stop Button
+http://icongal.com/gallery/icon/32128/128/stop_red
+
+

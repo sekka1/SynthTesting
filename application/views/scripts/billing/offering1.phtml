@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Algorithms</title>
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<script src="/js/html5.js" type="text/javascript"></script>
+<!-- slider starts -->
+<script type="text/javascript" src="/js/jquery-1.4.2.min.js" charset="utf-8"></script>
+<script src="/js/jquery.cycle.all.min.js" type="text/javascript" charset="utf-8"></script>
+<script language="javascript">
+ $(document).ready(function(){
+ 	$('div.slides').cycle({ 
+			slideExpr: 'ul.list2 li',
+			fx: 'scrollLeft', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+			pager: '.controls-strip',
+			timeout:  0,
+			pagerAnchorBuilder: function(idx, slide) { 
+			myClass = (idx==0)?' class="activeSlide"':'';
+			return '<a href="#" '+myClass+'></a>'; 
+			}
+		});
+	});
+ </script>
+<!--/ slider ends -->
+</head>
+<body>
+<div class="layout">
+  <!-- header starts -->
+  <header>
+    <div class="header-inner">
+      <div class="logo npl"> <a href="/index/index2"><img width="325" height="58" src="/images/logo.png" alt="logo" /></a></div>
+      <div class="right-div">
+        <div class="sign-in"><a href="/login/logout">Logout</a> </div>
+        <nav>
+          <ul id="links">
+            <li><a href="/index/index2">Home </a></li>
+            <li><a href="/index/products"> Products </a></li>
+            <li><a href="/index/api"> API </a></li>
+            <li><a href="/index/pricing"> Pricing </a></li>
+            <li><a href="/index/aboutus"> About Us</a></li>
+            <li><a href="/index/jobs"> Jobs </a> </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- header ends -->
+  <!-- body starts -->
+  <div class="body-outer">
+    <div class="body">
+  <!-- aboutus box -->	      
+   <div class="about-box">
+   <h3>Offer Name Here</h3>
+        <p>There is some information or possibly some pictures here about the offereing</p>
+        <br/>
+        <br/>
+
+        <p>Test Buy now button</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="QPF4SJQGBNKBJ">
+        <input type="hidden" name="custom" value="username:<? echo $this->username; ?>">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+        <br/>
+        <p>1 Algo Credit</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="U2Y6LUEQ8EM6L">
+        <input type="hidden" name="custom" value="username:<? echo $this->username; ?>">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+        <br/>
+        <p>500 Credit</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="BB933RH3RW66Y">
+        <input type="hidden" name="custom" value="username:<? echo $this->username; ?>">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+        <br/>
+        <p>1,000 Credit</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="EV2ZUQYY4WRWS">
+        <input type="hidden" name="custom" value="username:<? echo $this->username; ?>">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+        <br/>
+        <p>5,000 Credit</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="J79V6GUPADTMU">
+        <input type="hidden" name="custom" value="username:<? echo $this->username; ?>">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+        <br/>
+        <p>10,000 Credit</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="YUD2B6QMJWEKL">
+        <input type="hidden" name="custom" value="username:<? echo $this->username; ?>">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+        <br/>
+        <p>25,000 Credit</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="VR6PVY9UABYHQ">
+        <input type="hidden" name="custom" value="username:<? echo $this->username; ?>">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+        <br/>
+        <p>50,000 Credit</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="47RFPM9P5GG58">
+        <input type="hidden" name="custom" value="username:<? echo $this->username; ?>">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+        <br/>
+        <p>100,000 Credit</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="CLLWTQ7ANVZGU">
+        <input type="hidden" name="custom" value="username:<? echo $this->username; ?>">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+    <div class="cl"></div>
+   </div>   
+  <!-- aboutus box box -->	      
+    <div class="cl"></div>
+   </div>
+  </div>
+  <!-- body ends -->
+  <!-- footer starts -->
+  <footer>
+    <div class="footer-inner">
+      <div class="bottom-logo"> <img src="/images/bottom-logo.png" width="106" height="26" alt="bottom logo" /></div>
+      <div class="footer-left">
+        <ul class="bottom-links">
+            <li><a href="/index/index2">Home </a></li>
+            <li><a href="/index/products"> Products </a></li>
+            <li><a href="/index/api"> API </a></li>
+            <li><a href="/index/pricing"> Pricing </a></li>
+            <li><a href="/index/aboutus"> About Us</a></li>
+            <li><a href="/index/jobs"> Jobs </a> </li>
+        </ul>
+        <br class="cl" />
+        <p>&copy; Copyright 2012 algorithms.io . All Rights Reserved </p>
+      </div>
+    </div>
+  </footer>
+  <!-- footer ends -->
+</div>
+</body>
+</html>
