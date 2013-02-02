@@ -1,25 +1,35 @@
 <?php
 
+/*
+This is an authenticated photos action
+*/
+
 class IndexController extends Zend_Controller_Action
 {
-    private $isLoggedIn;
+
+    private $username;
+    private $user_id_seq;
+	
+	private $isLoggedIn;
 
     public function init()
     {
         /* Initialize action controller here */
+
     }
-    public function preDispatch(){
+     public function preDispatch(){
 
         // Authentication Piece
         $this->auth = Zend_Auth::getInstance();
 
         if(!$this->auth->hasIdentity()){
-            $this->isLoggedIn = 'false';  
+			$this->_redirect( '/login?f=' . $this->_request->getRequestUri() );
         } else {
-            // User is valid and logged in
-            $this->isLoggedIn = 'true';
+                // User is valid and logged in
+                $this->username = $this->auth->getIdentity();
+				$this->isLoggedIn = 'true';
         }
-    }
+     }
     public function __call($method, $args)
     {
         if ('Action' == substr($method, -6)) {
@@ -27,7 +37,7 @@ class IndexController extends Zend_Controller_Action
             // template
             return $this->render('error');
 
-            // Forward to another page
+	    // Forward to another page
             //return $this->_forward('index');
         }
 
@@ -40,6 +50,20 @@ class IndexController extends Zend_Controller_Action
     }
     public function indexAction()
     {
-        $this->view->isLoggedIn = $this->isLoggedIn;
+	//print( $this->client_id_seq . ' - ' . $this->user_id_seq . '<br/>' );
+		$this->view->isLoggedIn = $this->isLoggedIn;
+		
+		$this->view->hourString = $this->createHourString();
     }
+	private function createHourString(){
+		
+		$currentHourString = date('H');
+		
+		for($i=1; $i<24; $i++){
+			$currentHourString .= ' ' . date('H', strtotime('-'.$i.' hour'));
+		}
+		
+		return $currentHourString;
+	}
+
 }

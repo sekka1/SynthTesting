@@ -1,72 +1,139 @@
-  <div class="banner-outer">
-    <div class="banner-inner">
-      <div class="banner">
+<br/>
+<div class="container">
+	
+	<h1>Service Assurance Dashboard</h1>
+	
+	<a href="#newMonitorModal" role="button" class="btn btn-primary" data-toggle="modal">Add New Monitor</a>
+	<a href="#newTrapModal" role="button" class="btn btn-primary" data-toggle="modal">Add New SNMP Trap Dest</a>
+	
+	<br/><br/>
+	
+	<table class="table table-striped table-bordered">
+		<tr>
+			<th>Monitor Name</th>
+			<th>Last 24 Hours Status:<br/><?php echo $this->hourString; ?></th>
+			<th>Action</th>
+		</tr>
+		<tr>
+			<td style="width: 25%;">XenDesktop Cluster 1</td>
+			<td style="width: 60%;">
+				<div class="progress">
+				    <div class="bar bar-success" style="width: 35%;"></div>
+				    <div class="bar bar-danger" style="width: 10%;"></div>
+				    <div class="bar bar-success" style="width: 35%;"></div>
+				    <div class="bar bar-danger" style="width: 10%;"></div>
+				    <div class="bar bar-success" style="width: 10%;"></div>
+			    </div>
+			</td>
+			<td style="width: 15%;">
+				<a href="#" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>  |
+				<a href="#" rel="tooltip" title="Pause"><i class="icon-pause"></i></a>  |
+				<a href="#" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+			</td>
+		</tr>
+		<tr>
+			<td>XenDesktop Cluster 2</td>
+			<td>
+				<div class="progress">
+					<div class="bar bar-success" style="width: 100%;"></div>
+				</div>
+			</td>
+			<td>
+				<a href="#" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>  |
+				<a href="#" rel="tooltip" title="Pause"><i class="icon-pause"></i></a>  |
+				<a href="#" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+			</td>
+		</tr>
+		<tr>
+			<td>XenDesktop Cluster 3</td>
+			<td>
+				<div class="progress">
+					<div class="bar bar-success" style="width: 100%;"></div>
+				</div>
+			</td>
+			<td>
+				<a href="#" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>  |
+				<a href="#" rel="tooltip" title="Pause"><i class="icon-pause"></i></a>  |
+				<a href="#" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+			</td>
+		</tr>
+		<tr>
+			<td>XenDesktop Cluster 4</td>
+			<td>
+				<div class="progress">
+					<div class="bar bar-success" style="width: 100%;"></div>
+				</div>
+			</td>
+			<td>
+				<a href="#" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>  |
+				<a href="#" rel="tooltip" title="Pause"><i class="icon-pause"></i></a>  |
+				<a href="#" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+			</td>
+		</tr>
+	</table>
+</div>
 
-     <script src="/js/raphael-min.js" type="text/javascript" charset="utf-8"></script> 
 
-
-<div id="myCarousel" class="carousel slide" style="width:1045px; height: 320px;" data-pause="hover">
-<div class="carousel-inner">
-
-        <div class="active item">
-                <div style="background-repeat: no-repeat; background-image:url('/images/main.png'); width:1045px; height: 320px;">  
-                    <div style="white-space: nowrap; position: relative; top: 220px;left: 190px;">
-                                        <a class="btn btn-large btn-primary" style="font-size: 18px; width: 150px; font-style: normal;" type="button" href="/index/technology">Learn More &raquo;</a>
-                                        <a class="btn btn-large btn-warning" style="font-style: normal; font-size: 18px; width: 150px;" type="button" href="/contact/register">Request Access &raquo;</a>
-                    </div>
-
-                </div>
-        </div>
-
-        <div class="item">
-                <div onclick="document.location='/index/technology/'" style="cursor:pointer;background-repeat: no-repeat; background-image:url('/images/banner_data.png'); width:1045px; height: 320px;">
-
-                </div>
-        </div>
-        
-        <div class="item">
-        <div style="background-repeat: no-repeat; background-image:url('/images/banner_simple.png'); width:1045px; height: 320px;">
-                    <div style="white-space: nowrap; position: relative; top: 160px;left: 450px;">
-                                        <a class="btn btn-large btn-primary" style="font-size: 18px; background: #3c92c7; width: 130px; font-style: normal;" type="button" href="/index/technology">Learn More &raquo;</a>
-                    </div>
-
-                </div>
-        </div>
-
- </div>
-
-        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!-- header ends -->
-  <!-- body starts -->
-  <div class="body-outer">
-    <div class="body" style="width: 1045px;padding-left: 20px;">
-
- <!-- Example row of columns -->
-      <div class="row-fluid">
-        <div class="span4">
-          <h2 style="font-style: normal">App Developers</h2>
-          <p>Build smarter apps faster on top of our data infrastructure.
-            <br> <a href="/index/solutions#developers">Learn More</a>
-            <br></p>
-        </div>
-        <div class="span4">
-          <h2 style="font-style: normal">Tech Companies</h2>
-          <p>Big data solutions for growing technology companies.
-            <br> <a href="/index/solutions#companies">Learn More</a>
-            <br></p>
-       </div>
-        <div class="span4">
-          <h2 style="font-style: normal">Data Scientists</h2>
-          <p>Host and distribute algorithms written in multiple programming languages.
-            <br> <a href="/index/solutions#scientists">Learn More</a>
-            <br></p>
-        </div>
-      </div>
-      </div>
-    </div>  
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<!-- Modal New Monitor-->
+<div id="newMonitorModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Add New XenDesktop Monitor</h3>
+	</div>
+	<form>
+		<div class="modal-body">
+			<legend>Test Parameters</legend>
+			<fieldset>
+				<label>Host Name:</label>
+				<input type="text" placeholder="vdi.example.com">
+				<label>Domain Name:</label>
+				<input type="text" placeholder="example.com">
+				<label>User Name:</label>
+				<input type="text" placeholder="Mike">
+				<label>Password:</label>
+				<input type="text" placeholder="Mike's Password">
+			</fieldset>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button class="btn btn-primary">Save changes</button>
+		</div>
+	</form>
+</div>
+<!-- Modal New Trap Destination-->
+<div id="newTrapModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Add New SNMP Trap Destination</h3>
+	</div>
+	<form>
+		<div class="modal-body">
+			<legend>Test Parameters</legend>
+			<fieldset>
+				<label>Trap Name:</label>
+				<input type="text" placeholder="Production Trap Server">
+				<label>Trap Destination:</label>
+				<input type="text" placeholder="trap.example.com">
+			</fieldset>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button class="btn btn-primary">Save changes</button>
+		</div>
+	</form>
+</div>
