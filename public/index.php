@@ -9,7 +9,7 @@ defined('APPLICATION_ENV')
     || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
 
 // Ensure library/ is on include_path
-set_include_path( implode( PATH_SEPARATOR, array( realpath( APPLICATION_PATH . '/../library'), realpath( APPLICATION_PATH . '/../library/AlgorithmsIO'), realpath( APPLICATION_PATH . '/../library/AlgorithmsIO/classes'), get_include_path(), APPLICATION_PATH . '/../application/userApp/', APPLICATION_PATH . '/../application/models' ) ) );
+set_include_path( implode( PATH_SEPARATOR, array( realpath( APPLICATION_PATH . '/../library'), realpath( APPLICATION_PATH . '/../library/AlgorithmsIO'), realpath( APPLICATION_PATH . '/../library/AlgorithmsIO/classes'), realpath( APPLICATION_PATH . '/../library/Monitors'), get_include_path(), APPLICATION_PATH . '/../application/userApp/', APPLICATION_PATH . '/../application/models' ) ) );
 //set_include_path( implode( PATH_SEPARATOR, array( realpath( APPLICATION_PATH . '/../library'), get_include_path(), ) ) );
 /** Zend_Application */
 require_once 'Zend/Application.php';  
