@@ -1,2 +1,0 @@
-jquery.jqGrid-4.4.1 from http://www.trirand.com/blog/?page_id=6
-
