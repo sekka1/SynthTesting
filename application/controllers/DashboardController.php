@@ -54,6 +54,10 @@ class DashboardController extends Zend_Controller_Action
 		$this->view->isLoggedIn = $this->isLoggedIn;
 		
 		$this->view->hourString = $this->createHourString();
+		
+		$this->view->monitorStatuses = $this->getMonitorStatuses();
+		
+		//print_r($this->view->monitorStatuses);
     }
 	private function createHourString(){
 		
@@ -64,6 +68,67 @@ class DashboardController extends Zend_Controller_Action
 		}
 		
 		return $currentHourString;
+	}
+	private function createHourArray(){
+		
+		$currentHourArray = array();
+		array_push($currentHourArray, date('H'));
+		
+		for($i=1; $i<24; $i++){
+			array_push($currentHourArray, date('H', strtotime('-'.$i.' hour')));
+		}
+		
+		return $currentHourArray;
+	}
+	private function getMonitorStatuses(){
+		
+		$returnArray = array();
+		
+		// Get all monitors
+		$monitorsTable = new Zend_Db_Table('monitors');
+		
+		$select = $monitorsTable->select();
+		
+		$rows = $monitorsTable->fetchAll($select);
+		
+		$resultsTable = new Zend_Db_Table('results');
+		
+		$currentHoursArray = $this->createHourArray();
+
+		// Get the results for each monitor
+		foreach($rows as $aMonitor){
+			
+			$data['monitor_name'] = $aMonitor->name;
+			
+			// Select each hour and massage it down to 6 points
+			foreach($currentHoursArray as $anHour){
+			
+				$select = $resultsTable->select()->where('monitor_id ='.$aMonitor->id)->where('hour(created) ='. $anHour);
+				
+				$resultsRow = $resultsTable->fetchAll($select);
+				
+				if(count($resultsRow) > 0){
+					$data['results'][$anHour]['status'] = 1;
+			
+					foreach($resultsRow as $aResult){					
+						// Just find if any are -1 or 0.  If so put that status on it for this hour
+						
+						if($aResult->status == -1){
+							$data['results'][$anHour]['status'] = -1;
+							break;
+						}
+						if($aResult->status == 0){
+							$data['results'][$anHour]['status'] = -1;
+						}
+					}
+				}else{
+					$data['results'][$anHour]['status'] = 0;
+				}
+			}
+			array_push($returnArray, $data);
+		}
+		
+		return $returnArray;
 	}
 
 }

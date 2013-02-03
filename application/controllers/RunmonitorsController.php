@@ -56,12 +56,17 @@ class RunmonitorsController extends Zend_Controller_Action
 		
 		if($key == '123456789'){
 			
-			echo date('m') . '<br/>';
-			echo 02 % 1 . "\n";
-			echo 10 % 5 . "\n";
-			echo 11 % 9 . "\n";
-			echo 19 % 9 . "\n";
-			echo 18 % 9 . "\n";
+			//echo date('m') . '<br/>';
+			//echo 02 % 1 . "\n";
+			//echo 10 % 5 . "\n";
+			//echo 11 % 9 . "\n";
+			//echo 19 % 9 . "\n";
+			//echo 18 % 9 . "\n";
+			
+			/*
+			 * 02
+				0 0 2 1 0 
+			 */
 			
 			// Get monitors to run
 			$monitors = $this->getMonitorsToRun();
