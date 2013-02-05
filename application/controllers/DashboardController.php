@@ -91,44 +91,123 @@ class DashboardController extends Zend_Controller_Action
 		
 		$rows = $monitorsTable->fetchAll($select);
 		
-		$resultsTable = new Zend_Db_Table('results');
-		
-		$currentHoursArray = $this->createHourArray();
-
 		// Get the results for each monitor
 		foreach($rows as $aMonitor){
 			
 			$data['monitor_name'] = $aMonitor->name;
 			
-			// Select each hour and massage it down to 6 points
+			//$data['results'] = $this->getHoursWorthOfResultsForAMonitor($aMonitor->id);
+			$data['results'] = $this->getALl24HoursResultForAMonitor($aMonitor->id);
+			
+			array_push($returnArray, $data);
+		}
+//print_r($returnArray);
+		return $returnArray;
+	}
+	/*
+	 * Return all the results with timestamps of the last 24 hours
+	 */
+	 private function getALl24HoursResultForAMonitor($monitor_id){
+	 
+	 	$resultsTable = new Zend_Db_Table('results');
+		
+		$select = $resultsTable->select()->where('monitor_id ='.$monitor_id)
+											->where('created > DATE_SUB( NOW(), INTERVAL 24 HOUR)')
+											->order('created desc');
+											
+		$resultsRow = $resultsTable->fetchAll($select);
+		
+		// Format output
+		$data = array();
+		$data['percentage_slices'] = 100/count($resultsRow);
+		$data['data'] = array();
+		foreach($resultsRow as $aRow){
+			$temp['status'] = $aRow->status;
+			$temp['created'] = $aRow->created;
+			array_push($data['data'], $temp);
+		}
+		return $data;
+	 }
+	/*
+	 * Returns the worst alert for each hour in the last 24 hours
+	 */
+	private function getHoursWorthOfResultsForAMonitor($monitor_id){
+		
+		$resultsTable = new Zend_Db_Table('results');
+		
+		$currentHoursArray = $this->createHourArray();
+		
+		$data = array();
+		
+		// Select each hour and massage it down to 6 points
 			foreach($currentHoursArray as $anHour){
 			
-				$select = $resultsTable->select()->where('monitor_id ='.$aMonitor->id)->where('hour(created) ='. $anHour);
+				$select = $resultsTable->select()->where('monitor_id ='.$monitor_id)->where('hour(created) ='. $anHour);
 				
 				$resultsRow = $resultsTable->fetchAll($select);
 				
 				if(count($resultsRow) > 0){
-					$data['results'][$anHour]['status'] = 1;
+					$data[$anHour]['status'] = 1;
 			
 					foreach($resultsRow as $aResult){					
 						// Just find if any are -1 or 0.  If so put that status on it for this hour
 						
 						if($aResult->status == -1){
-							$data['results'][$anHour]['status'] = -1;
+							$data[$anHour]['status'] = -1;
 							break;
 						}
 						if($aResult->status == 0){
-							$data['results'][$anHour]['status'] = -1;
+							$data[$anHour]['status'] = -1;
 						}
 					}
 				}else{
-					$data['results'][$anHour]['status'] = 0;
+					$data[$anHour]['status'] = 0;
 				}
 			}
-			array_push($returnArray, $data);
-		}
-		
-		return $returnArray;
+			
+		return $data;
 	}
-
+	/*
+	 * Returns the results for a monitor ID that is passed in for the last 24 hours
+	 * 
+	 * http://www.userrobot.com/dashboard/getmonitorresult24h/id/1
+	 */
+	public function getmonitorresult24hAction(){
+		
+		$this->_helper->layout->disableLayout();
+		
+		(int)$monitor_id = $this->_request->getParam('id');
+		
+		if(is_numeric($monitor_id)){
+		
+			$resultsTable = new Zend_Db_Table('results');
+			
+			$select = $resultsTable->select()
+									->where('monitor_id ='.$monitor_id)
+									->where('created > DATE_SUB( NOW(), INTERVAL 24 HOUR)')
+									->order('created asc');
+					
+			$resultsRow = $resultsTable->fetchAll($select);
+			
+			//print_r($resultsRow);
+			
+			$data['data'] = array();
+			$data['type'] = 'bar';
+			
+			// Format data
+			foreach($resultsRow as $aRow){
+				$temp['unit'] = $aRow->created;
+				$temp['value'] = $aRow->status;
+				array_push($data['data'], $temp);
+			}
+			
+			$output['JSChart']['dataset'] = array();
+			array_push($output['JSChart']['dataset'], $data);
+			
+			//print_r($output);
+			$this->view->output = json_encode($output);
+		}else{
+			echo '{}';
+		}
+	}
 }

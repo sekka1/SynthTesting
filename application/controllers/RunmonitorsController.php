@@ -76,6 +76,10 @@ class RunmonitorsController extends Zend_Controller_Action
 					
 				$result = $this->runMonitor($aMonitor);
 				$this->saveMonitorTestResults($aMonitor->id, $result);
+				
+				// Send notifications here if needed
+				if($result['up_down'] == -1)
+					$this->sendNotification($aMonitor->notification_id, $aMonitor->name);
 			}
 			
 		}else{
@@ -86,7 +90,8 @@ class RunmonitorsController extends Zend_Controller_Action
 		
 		$monitorsTable = new Zend_Db_Table('monitors');
 		
-		$select = $monitorsTable->select();
+		$select = $monitorsTable->select()
+						->where('is_active=1');
 		
 		$rows = $monitorsTable->fetchAll($select);
 		
@@ -149,5 +154,40 @@ class RunmonitorsController extends Zend_Controller_Action
 				);
 				
 		$resultsTable->insert($data);
+	}
+	private function sendNotification($notification_id, $monitor_name){
+		
+		$notificationTable = new Zend_Db_Table('notifications');
+		
+		$select = $notificationTable->select()
+						->where('id='.$notification_id);
+						
+		$rows = $notificationTable->fetchAll($select);
+
+		if(count($rows) == 1){
+			// Send notification
+			
+			$emailDef = json_decode($rows[0]->definition, true);
+print_r($emailDef);
+			Zend_Loader::loadClass('Notification');
+			$notification = New Notification();
+			
+			if($emailDef['is_authenticated']){
+				$notification->setAuthUser($emailDef['authUser']);
+				$notification->setAuthPassword($emailDef['authPassword']);
+echo "<br>Authing...<br/>";
+			}
+			$notification->setSMTP($emailDef['smtp']);
+			$notification->setFromEmail($emailDef['fromEmail']);
+			$notification->setFromName('User Robot');
+			$notification->setToEmail($emailDef['toEmail']);
+			$notification->setToName('Human');
+			$notification->setBody('Service Outage: ' . $monitor_name);
+			$notification->setSubject('Service Outage: ' . $monitor_name);
+			$notification->setDomain($emailDef['domain']);
+			
+			$notification->send();
+			
+		}
 	}
 }
