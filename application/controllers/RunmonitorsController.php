@@ -157,6 +157,10 @@ class RunmonitorsController extends Zend_Controller_Action
 	}
 	private function sendNotification($notification_id, $monitor_name){
 		
+		// No notification is set
+		if($notification_id==null)
+			return;
+		
 		$notificationTable = new Zend_Db_Table('notifications');
 		
 		$select = $notificationTable->select()
