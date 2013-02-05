@@ -18,7 +18,7 @@
 		</tr>
 		
 		<?php
-			
+		
 			// Outputting each Monitor
 			foreach($this->monitorStatuses as $aMonitor){
 				
@@ -45,7 +45,7 @@
 					<td style="width: 15%;">
 						<a href="#" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>  |
 						<a href="#" rel="tooltip" title="Pause"><i class="icon-pause"></i></a>  |
-						<a href="#" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+						<a href="/monitor/delete/id/'.$aMonitor['monitor_id'].'" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
 					</td>';
 				echo '</tr>';
 			}
@@ -77,18 +77,33 @@
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		<h3 id="myModalLabel">Add New XenDesktop Monitor</h3>
 	</div>
-	<form>
+	<form method="post" action="/monitor/xendesktop/action/save">
+		<input type="hidden" name="ac" value="save"/>
 		<div class="modal-body">
-			<legend>Test Parameters</legend>
+			<legend>XenDesktop Parameters</legend>
 			<fieldset>
+				<label>Monitor Name:</label>
+				<input type="text" name="name" placeholder="Production - vdi.example.com">
 				<label>Host Name:</label>
-				<input type="text" placeholder="vdi.example.com">
+				<input type="text" name="baseURL" placeholder="vdi.example.com">
 				<label>Domain Name:</label>
-				<input type="text" placeholder="example.com">
+				<input type="text" name="domain" placeholder="example.com">
 				<label>User Name:</label>
-				<input type="text" placeholder="Mike">
+				<input type="text" name="username" placeholder="Mike">
 				<label>Password:</label>
-				<input type="text" placeholder="Mike's Password">
+				<input type="text" name="password" placeholder="Mike's Password">
+				<label>Version:</label>
+				<input type="text" name="version" placeholder="5.6">
+				<label>Test Interval in Minutes:</label>
+				<input type="text" name="schedule" placeholder="1">
+				<label>Notification ID:</label>
+				<select name="notification_id">
+					<?php  
+						foreach($this->notificationList as $aNotification){
+							echo '<option value="'.$aNotification['id'].'">'.$aNotification['name'].'</option>';
+						}
+					?>
+				</select>
 			</fieldset>
 		</div>
 		<div class="modal-footer">

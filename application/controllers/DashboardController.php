@@ -27,9 +27,16 @@ class DashboardController extends Zend_Controller_Action
         } else {
                 // User is valid and logged in
                 $this->username = $this->auth->getIdentity();
+				$this->user_id_seq = $this->getUserID($this->username);
 				$this->isLoggedIn = 'true';
         }
      }
+	 private function getUserID($username){
+	 	$userTable = new Zend_Db_Table('users');
+		$select = $userTable->select()->where('username="'.$username.'"');
+		$resultsRow = $userTable->fetchAll($select);
+		return $resultsRow[0]->id;
+	 }
     public function __call($method, $args)
     {
         if ('Action' == substr($method, -6)) {
@@ -57,6 +64,8 @@ class DashboardController extends Zend_Controller_Action
 		
 		$this->view->monitorStatuses = $this->getMonitorStatuses();
 		
+		$this->view->notificationList = $this->getNotificationList();
+
 		//print_r($this->view->monitorStatuses);
     }
 	private function createHourString(){
@@ -95,6 +104,7 @@ class DashboardController extends Zend_Controller_Action
 		foreach($rows as $aMonitor){
 			
 			$data['monitor_name'] = $aMonitor->name;
+			$data['monitor_id'] = $aMonitor->id;
 			
 			//$data['results'] = $this->getHoursWorthOfResultsForAMonitor($aMonitor->id);
 			$data['results'] = $this->getALl24HoursResultForAMonitor($aMonitor->id);
@@ -119,7 +129,10 @@ class DashboardController extends Zend_Controller_Action
 		
 		// Format output
 		$data = array();
-		$data['percentage_slices'] = 100/count($resultsRow);
+		if(count($resultsRow)>0)
+			$data['percentage_slices'] = 100/count($resultsRow);
+		else
+			$data['percentage_slices'] = 100;
 		$data['data'] = array();
 		foreach($resultsRow as $aRow){
 			$temp['status'] = $aRow->status;
@@ -210,4 +223,20 @@ class DashboardController extends Zend_Controller_Action
 			echo '{}';
 		}
 	}
+	/*
+	 * Retrieves a list of notifications this user owns
+	 */
+	 private function getNotificationList(){
+	 	$notificationTable = new Zend_Db_Table('notifications');
+		$select = $notificationTable->select()
+									->where('user_id ='.$this->user_id_seq);
+		$resultsRow = $notificationTable->fetchAll($select);
+		$output = array();
+		foreach($resultsRow as $aRow){
+			$temp['id'] = $aRow->id;
+			$temp['name'] = $aRow->name;
+			array_push($output,$temp);
+		}
+		return $output;
+	 }
 }
