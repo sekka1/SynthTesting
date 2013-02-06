@@ -77,9 +77,13 @@ class RunmonitorsController extends Zend_Controller_Action
 				$result = $this->runMonitor($aMonitor);
 				$this->saveMonitorTestResults($aMonitor->id, $result);
 				
-				// Send notifications here if needed
-				if($result['up_down'] == -1)
-					$this->sendNotification($aMonitor->notification_id, $aMonitor->name);
+				// Send notifications here if needed 
+				// Only send it if the last 3 test runs were a failure
+				if($result['up_down'] == -1){
+					if($this->last3TestFailed($aMonitor->id)){
+						$this->sendNotification($aMonitor->notification_id, $aMonitor->name);
+					}
+				}
 			}
 			
 		}else{
@@ -193,5 +197,32 @@ echo "<br>Authing...<br/>";
 			$notification->send();
 			
 		}
+	}
+	/*
+	 * Returns true|false
+	 * 
+	 * True if the last 3 tests for this monitor ID was a failure also.
+	 * 
+	 * Dont want to keep on spamming the user for one failed test
+	 */
+	private function last3TestFailed($monitor_id){
+		
+		$resultsTable = new Zend_Db_Table('results');
+		$select = $resultsTable->select()
+						->where('monitor_id='.$monitor_id)
+						->order('created desc')
+						->limit('3');
+		$rows = $resultsTable->fetchAll($select);
+	
+		$allFailed = false;
+	
+		// Check if they are all status -1
+		if(count($rows)==3){
+			if(($rows[0]->status==-1) && ($rows[1]->status==-1) && ($rows[2]->status==-1))
+				$allFailed = true;
+echo '<br/>Last 3 tests failed...<br/>';
+		}
+		
+		return $allFailed;
 	}
 }
