@@ -14,7 +14,7 @@
 		<tr>
 			<th>Monitor Name</th>
 			<th>Last 24 Hours Status:<br/><?php //echo $this->hourString; ?></th>
-			<th>Action</th>
+			<th>Actions</th>
 		</tr>
 		
 		<?php
@@ -43,9 +43,14 @@
 					    echo '</div>';
 					echo '</td>
 					<td style="width: 15%;">
-						<a href="#" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>  |
-						<a href="#" rel="tooltip" title="Pause"><i class="icon-pause"></i></a>  |
-						<a href="/monitor/delete/id/'.$aMonitor['monitor_id'].'" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
+						<!--<a href="#" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>  |-->';
+						
+						// Pause functionality
+						if($aMonitor['monitor_is_active']==1)
+							echo '<a href="/monitor/pause/id/'.$aMonitor['monitor_id'].'" rel="tooltip" title="Pause"><i class="icon-pause"></i></a>  |';
+						else
+							echo '<a href="/monitor/unpause/id/'.$aMonitor['monitor_id'].'" rel="tooltip" title="Enable"><i class="icon-play"></i></a>  |';
+						echo '<a href="/monitor/delete/id/'.$aMonitor['monitor_id'].'" rel="tooltip" title="Delete"><i class="icon-remove"></i></a>
 					</td>';
 				echo '</tr>';
 			}
@@ -124,12 +129,15 @@
 			<fieldset>
 				<label>Notifiation Name:</label>
 				<input type="text" name="name" placeholder="My Email Notification">
-				<label>Use Athentication</label>
-				<input type="text" name="is_authenticated" placeholder="true or false">
+				<label>Use Athentication:</label>
+				<select name="is_authenticated">
+					<option value="true">True</option>
+					<option value="false">False</option>
+				</select>
 				<label>Authentication User</label>
-				<input type="text" name="authUser" placeholder="User if any">
+				<input type="text" name="authUser" placeholder="User: if use auth is true">
 				<label>Authentication Password</label>
-				<input type="text" name="authPassword" placeholder="Password if any">
+				<input type="text" name="authPassword" placeholder="Password: if use auth is true">
 				<label>SMTP Address</label>
 				<input type="text" name="smtp" placeholder="mail.example.com">
 				<label>From Email</label>

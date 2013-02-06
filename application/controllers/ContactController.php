@@ -16,15 +16,15 @@ class ContactController extends Zend_Controller_Action
     {
         /* Initialize action controller here */
 
-        $this->authEmail = 'no-reply@algorithms.io';
-        $this->authPassword = 'y&=752QN';
+        $this->authEmail = 'no-reply@userrobot.com';
+        $this->authPassword = 'UR*%5KhV11';
         $this->smtp = 'smtp.gmail.com';
-        $this->fromEmail = 'support@algorithms.io';
+        $this->fromEmail = 'no-reply@userrobot.com';
         $this->fromName = 'Support';
-        $this->bccEmail = 'core@algorithms.io';
+        $this->bccEmail = 'garlandk@gmail.com';
         $this->bccName = 'Support';
         $this->subject = '';
-        $this->domain = 'www.algorithms.io';
+        $this->domain = 'userrobot.com';
     }
     public function preDispatch(){
 
@@ -69,17 +69,21 @@ class ContactController extends Zend_Controller_Action
     {
         $this->view->isLoggedIn = $this->isLoggedIn;
     }
+    public function getstartedAction()
+    {
+        $this->view->isLoggedIn = $this->isLoggedIn;
+    }
     public function confirmAction()
     {
 
-       $phrase1 = isset($_POST['phrase1']) ? $_POST['phrase1'] : '';  
-       $phrase2 = isset($_POST['phrase2']) ? $_POST['phrase2'] : '';  
-       $phrase3 = isset($_POST['phrase3']) ? $_POST['phrase3'] : '';  
+       //$phrase1 = isset($_POST['phrase1']) ? $_POST['phrase1'] : '';  
+       //$phrase2 = isset($_POST['phrase2']) ? $_POST['phrase2'] : '';  
+       //$phrase3 = isset($_POST['phrase3']) ? $_POST['phrase3'] : '';  
        $name = isset($_POST['name']) ? $_POST['name'] : '';  
        $phone = isset($_POST['phone']) ? $_POST['phone'] : '';  
        $info = isset($_POST['info']) ? $_POST['info'] : '';  
        $company = isset($_POST['company']) ? $_POST['company'] : '';  
-       $wantbeta = isset($_POST['wantbeta']) ? $_POST['wantbeta'] : '';  
+       //$wantbeta = isset($_POST['wantbeta']) ? $_POST['wantbeta'] : '';  
        $email = isset($_POST['email']) ? $_POST['email'] : '';  
         $this->view->email = $email;
         $this->view->isLoggedIn = $this->isLoggedIn;
@@ -93,7 +97,7 @@ class ContactController extends Zend_Controller_Action
 
                 $toEmail = 'support@algorithms.io';
 
-                $body = "FullName: " . $name . "\nPhone: " . $phone . "\nEnteredInfo: " . $info . "\nCompany: " . $company . "\nWanttoSignup: " . $wantbeta . "\nemail: " . $email . "\n USER_TYPE:" . $phrase1 . "\n USE_CASE:". $phrase2 . "\nLINKED_FROM:".$phrase3;
+                $body = "FullName: " . $name . "\nPhone: " . $phone . "\nEnteredInfo: " . $info . "\nCompany: " . $company . "\nemail: " . $email;
                 $this->subject = 'Contact Form Request';
                 $utilities->email( $this->authEmail, $this->authPassword, $this->smtp, $this->fromEmail, $this->fromName, $toEmail, $email, $this->bccEmail, $this->bccName, $this->subject, $body );        
                 }

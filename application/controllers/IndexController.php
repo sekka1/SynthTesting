@@ -23,7 +23,7 @@ class IndexController extends Zend_Controller_Action
         $this->auth = Zend_Auth::getInstance();
 
         if(!$this->auth->hasIdentity()){
-			$this->_redirect( '/login?f=' . $this->_request->getRequestUri() );
+//			$this->_redirect( '/login?f=' . $this->_request->getRequestUri() );
         } else {
                 // User is valid and logged in
                 $this->username = $this->auth->getIdentity();

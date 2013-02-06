@@ -5,7 +5,7 @@
 <title>User Robot</title>
 <link href="/css/style.css" rel="stylesheet" type="text/css" />
 <script src="/js/html5.js" type="text/javascript"></script>
-
+<meta name="google-site-verification" content="PbSWX8zh-D1nGYxZcFCTILLVJfJnQcak5j-DK30d3Do" />
 
 <link rel="shortcut icon" href="/images/icon.ico" type="image/x-icon">
 <link rel="icon" href="/images/icon.ico" type="image/x-icon">
@@ -38,7 +38,7 @@
 <!-- header starts -->
   <header id="sticky_nav">
     <div class="header-inner">
-      <div class="logo npl"> <a href="/dashboard"><img width="330" height="57" src="/images/logo.png" alt="logo" /></a></div>
+      <div class="logo npl"> <a href="/index"><img width="330" height="57" src="/images/logo.png" alt="logo" /></a></div>
       <div class="right-div">
             <?php
                 if( $this->isLoggedIn  == 'true')
@@ -47,18 +47,15 @@
                     echo '<div class="sign-in"><a href="/login/index">Sign In </a></div>';
             ?>
         <nav>
-        <!--
+        
           <ul id="links">
-            <li><a href="/index/technology">Technology</a></li>
-            <li><a href="/index/solutions">Solutions</a></li>
-            <li><a href="http://documentation.algorithms.io/">Documentation</a></li>
-            <li><a href="/index/aboutus">About Us</a></li>
+            <li><a href="/contact/getstarted">Get Started</a></li>
             <?php
                 if( $this->isLoggedIn  == 'true')
                 echo '<li><a href="/Dashboard"> Dashboard </a></li>';
             ?>
           </ul>
-         -->
+         
         </nav>
       </div>
     </div>

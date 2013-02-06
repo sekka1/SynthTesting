@@ -105,7 +105,8 @@ class DashboardController extends Zend_Controller_Action
 			
 			$data['monitor_name'] = $aMonitor->name;
 			$data['monitor_id'] = $aMonitor->id;
-			
+			$data['monitor_is_active'] = $aMonitor->is_active;
+ 			
 			//$data['results'] = $this->getHoursWorthOfResultsForAMonitor($aMonitor->id);
 			$data['results'] = $this->getALl24HoursResultForAMonitor($aMonitor->id);
 			

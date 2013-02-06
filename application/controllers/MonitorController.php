@@ -30,6 +30,8 @@ class MonitorController extends Zend_Controller_Action
 				$this->user_id_seq = $this->getUserID($this->username);
 				$this->isLoggedIn = 'true';
         }
+		
+		$this->view->isLoggedIn = $this->isLoggedIn;
      }
 	 private function getUserID($username){
 	 	$userTable = new Zend_Db_Table('users');
@@ -102,4 +104,38 @@ class MonitorController extends Zend_Controller_Action
 			$monitorsTable->delete($where);
 		}
 	}
+	/*
+	 * Pause Monitor
+	 */
+	 public function pauseAction(){
+	 	
+		$id = (int)$this->_request->getParam('id');
+		
+	 	if(is_numeric($id)){
+			$monitorsTable = new Zend_Db_Table('monitors');
+			$where = array(
+						'user_id = ?' => $this->user_id_seq,
+						'id = ?' => $id
+						);
+			$data['is_active'] = 0;
+			$monitorsTable->update($data, $where);
+		}
+	 }
+	/*
+	 * UnPause Monitor
+	 */
+	 public function unpauseAction(){
+	 	
+		$id = (int)$this->_request->getParam('id');
+		
+	 	if(is_numeric($id)){
+			$monitorsTable = new Zend_Db_Table('monitors');
+			$where = array(
+						'user_id = ?' => $this->user_id_seq,
+						'id = ?' => $id
+						);
+			$data['is_active'] = 1;
+			$monitorsTable->update($data, $where);
+		}
+	 }
 }
