@@ -15,7 +15,7 @@ if (getenv("ZEND_APPLICATION_ENV")) {
     define('APPLICATION_ENV', 'staging');
 }
 
-define('LIBRARY_PATH', realpath(dirname(__FILE__) . '/../../main/php/library'));
+define('LIBRARY_PATH', realpath(dirname(__FILE__) . '/../library'));
 define('TESTS_PATH', realpath(dirname(__FILE__)));
 
 $includePaths = array(LIBRARY_PATH, get_include_path());
