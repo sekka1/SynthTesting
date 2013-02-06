@@ -52,18 +52,9 @@ class IndexController extends Zend_Controller_Action
     {
 	//print( $this->client_id_seq . ' - ' . $this->user_id_seq . '<br/>' );
 		$this->view->isLoggedIn = $this->isLoggedIn;
-		
-		$this->view->hourString = $this->createHourString();
     }
-	private function createHourString(){
-		
-		$currentHourString = date('H');
-		
-		for($i=1; $i<24; $i++){
-			$currentHourString .= ' ' . date('H', strtotime('-'.$i.' hour'));
-		}
-		
-		return $currentHourString;
+	public function purchaseAction(){
+		$this->view->isLoggedIn = $this->isLoggedIn;
 	}
 
 }
