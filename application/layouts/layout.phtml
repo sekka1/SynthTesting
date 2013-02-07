@@ -49,11 +49,12 @@
         <nav>
         
           <ul id="links">
-          	<li><a href="/index/purchase">Purchase</a></li>
             <li><a href="/contact/getstarted">Contact Us</a></li>
             <?php
                 if( $this->isLoggedIn  == 'true')
-                echo '<li><a href="/Dashboard"> Dashboard </a></li>';
+                	echo '<li><a href="/Dashboard"> Dashboard </a></li>';
+				else
+					echo '<li><a href="/index/purchase">Purchase</a></li>';
             ?>
           </ul>
          
