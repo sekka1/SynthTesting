@@ -56,5 +56,8 @@ class IndexController extends Zend_Controller_Action
 	public function purchaseAction(){
 		$this->view->isLoggedIn = $this->isLoggedIn;
 	}
+	public function ovaAction(){
+		
+	}
 
 }
