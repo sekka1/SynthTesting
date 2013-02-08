@@ -95,7 +95,7 @@ class ContactController extends Zend_Controller_Action
                 require_once('AlgorithmsIO/classes/Utilities.php');
                 $utilities = new Utilities();
 
-                $toEmail = 'support@algorithms.io';
+                $toEmail = 'support@userrobot.com';
 
                 $body = "FullName: " . $name . "\nPhone: " . $phone . "\nEnteredInfo: " . $info . "\nCompany: " . $company . "\nemail: " . $email;
                 $this->subject = 'Contact Form Request';

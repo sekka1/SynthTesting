@@ -81,5 +81,6 @@ class NotifyController extends Zend_Controller_Action
 				
 		$notificationsTable->insert($data);
 		
+		$this->view->isLoggedIn = $this->isLoggedIn;
 	}
 }
