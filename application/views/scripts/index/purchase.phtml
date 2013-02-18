@@ -3,9 +3,30 @@
 	<h1>Purchase Options:</h1>
 
 	<div class="featurette">
-       	<a class="wepay-widget-button wepay-green" id="wepay_widget_anchor_5112bb78ce09c" href="https://www.wepay.com/stores/812921/item/676772">Buy Now</a><script type="text/javascript">var WePay = WePay || {};WePay.load_widgets = WePay.load_widgets || function() { };WePay.widgets = WePay.widgets || [];WePay.widgets.push( {object_id: 676772,widget_type: "store_item_buy_now",anchor_id: "wepay_widget_anchor_5112bb78ce09c",widget_options: {store_id: 812921,show_item_price: true,show_item_images: true,button_text_sold_out: "Sold Out",show_item_custom_options: true,button_text: "Buy Now"}});if (!WePay.script) {WePay.script = document.createElement('script');WePay.script.type = 'text/javascript';WePay.script.async = true;WePay.script.src = 'https://static.wepay.com/min/js/widgets.v2.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(WePay.script, s);} else if (WePay.load_widgets) {WePay.load_widgets();}</script>
         <h2 class="featurette-heading">Purchase the VMware Virtual Appliance Now. <span class="muted"></span></h2>
         <p class="lead">Once purchased, you will receive an email with the download link.  Simply download the OVA file and import it into your VMware virtual environment.</p>
+        
+        <p class="lead">$299 USD
+        	<!--Amazon Purchase-->
+			<form action="https://authorize.payments.amazon.com/pba/paypipeline" method="post">
+			  <input type="hidden" name="returnUrl" value="http://www.userrobot.com/index/ova" >
+			  <input type="hidden" name="processImmediate" value="1" >
+			  <input type="hidden" name="accessKey" value="11SEM03K88SD016FS1G2" >
+			  <input type="hidden" name="signatureMethod" value="HmacSHA256" >
+			  <input type="hidden" name="collectShippingAddress" value="0" >
+			  <input type="hidden" name="isDonationWidget" value="0" >
+			  <input type="hidden" name="amazonPaymentsAccountId" value="QJGVHSOIJVOB1SN4DHBKZV4FF67QFXZRKNLKQA" >
+			  <input type="hidden" name="cobrandingStyle" value="logo" >
+			  <input type="hidden" name="immediateReturn" value="1" >
+			  <input type="hidden" name="amount" value="USD 299" >
+			  <input type="hidden" name="description" value="VMware Virtual Appliance.  A downloadable ova will be available after purchase." >
+			  <input type="hidden" name="abandonUrl" value="http://www.userrobot.com/index/purchase" >
+			  <input type="hidden" name="signatureVersion" value="2" >
+			  <input type="hidden" name="signature" value="uqcz8SMT4Cl2/6X50Vx78zR0ryvf+GwJPbyiQTTHeBU=" >
+			  <input type="image" src="http://g-ecx.images-amazon.com/images/G/01/asp/golden_large_paynow_withlogo_whitebg.gif" border="0">
+			</form>
+			
+		</p>
      </div>
      
 	<hr class="featurette-divider">

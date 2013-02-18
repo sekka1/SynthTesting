@@ -23,7 +23,7 @@
 			foreach($this->monitorStatuses as $aMonitor){
 				
 				echo '<tr>';
-					echo '<td style="width: 25%;">'.$aMonitor['monitor_name'].'</td>';
+					echo '<td style="width: 25%;"><a href="/dashboard/details/monitor/'.$aMonitor['monitor_id'].'/duration/24h/name/'.$aMonitor['monitor_name'].'">'.$aMonitor['monitor_name'].'</a></td>';
 					echo '<td style="width: 42%;">';
 						echo '<div class="progress">';
 						
@@ -94,9 +94,9 @@
 				<label>Domain Name:</label>
 				<input type="text" name="domain" placeholder="example.com">
 				<label>User Name:</label>
-				<input type="text" name="username" placeholder="Mike">
+				<input type="text" name="username" placeholder="Test User login">
 				<label>Password:</label>
-				<input type="text" name="password" placeholder="Mike's Password">
+				<input type="text" name="password" placeholder="Test User Password">
 				<label>Version:</label>
 				<input type="text" name="version" placeholder="5.6">
 				<label>Test Interval in Minutes:</label>

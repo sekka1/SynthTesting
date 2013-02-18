@@ -1,0 +1,28 @@
+<div class="container">
+	
+	<p><a href="/dashboard/index">Back</a></p>
+	
+<?php
+
+	$data = json_decode($this->output, true);
+	
+	// Header
+	echo '<table class="table table-striped table-bordered">';
+	echo '<tr>
+			<td>Date</td>
+			<td>Status</td>
+			<td>Info</td>
+			</tr>';
+		
+	foreach($data['data'] as $aResult){
+		echo '<tr>';
+		echo '<td>'.$aResult['created'].'</td>';
+		echo '<td>'.$aResult['status'].'</td>';
+		echo '<td>'.json_encode($aResult['meta_data']).'</td>';
+		echo '</tr>';
+	}
+
+	echo '</table>';
+?>
+
+</div>

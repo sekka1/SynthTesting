@@ -192,6 +192,12 @@ class DashboardController extends Zend_Controller_Action
 		
 		(int)$monitor_id = $this->_request->getParam('id');
 		
+		$this->view->output = $this->getResults($monitor_id);
+	}
+	private function getResults($monitor_id){
+		
+		$output = null;
+				
 		if(is_numeric($monitor_id)){
 		
 			$resultsTable = new Zend_Db_Table('results');
@@ -199,30 +205,27 @@ class DashboardController extends Zend_Controller_Action
 			$select = $resultsTable->select()
 									->where('monitor_id ='.$monitor_id)
 									->where('created > DATE_SUB( NOW(), INTERVAL 24 HOUR)')
-									->order('created asc');
+									->order('created desc');
 					
 			$resultsRow = $resultsTable->fetchAll($select);
-			
-			//print_r($resultsRow);
-			
-			$data['data'] = array();
-			$data['type'] = 'bar';
+						
+			$output['data'] = array();
 			
 			// Format data
 			foreach($resultsRow as $aRow){
-				$temp['unit'] = $aRow->created;
-				$temp['value'] = $aRow->status;
-				array_push($data['data'], $temp);
+				$temp['status'] = $aRow->status;
+				$temp['meta_data'] = json_decode($aRow->meta_data,true);
+				$temp['created'] = $aRow->created;
+				array_push($output['data'], $temp);
 			}
 			
-			$output['JSChart']['dataset'] = array();
-			array_push($output['JSChart']['dataset'], $data);
-			
 			//print_r($output);
-			$this->view->output = json_encode($output);
+			$output = json_encode($output);
 		}else{
 			echo '{}';
 		}
+		
+		return $output;
 	}
 	/*
 	 * Retrieves a list of notifications this user owns
@@ -239,5 +242,18 @@ class DashboardController extends Zend_Controller_Action
 			array_push($output,$temp);
 		}
 		return $output;
+	 }
+	/*
+	 * Shows the details of a monitor for the last X hours
+	 */
+	 public function detailsAction(){
+	 	
+		$this->view->isLoggedIn = $this->isLoggedIn;
+		
+		(int)$monitor_id = $this->_request->getParam('monitor');
+		$duration = $this->_request->getParam('duration');
+
+		$this->view->output = $this->getResults($monitor_id);
+
 	 }
 }
