@@ -1,0 +1,72 @@
+<br/>
+<div class="container">
+	
+	<h1>Edit Monitor</h1>
+	
+	<br/><br/>
+	
+
+	
+	<table class="table table-striped table-bordered">
+		
+		<?php
+		
+			if($this->monitor != null){
+				
+				$monitor_definition = json_decode($this->monitor['definition'], true);
+
+				echo '<form action="/monitor/xendesktop" method="post">';
+				echo '<input type="hidden" name="monitor_id" value="'.$this->monitor_id.'"/>';
+				echo '<input type="hidden" name="class_name" value="'.$this->monitor['class_name'].'"/>';
+				echo '<input type="hidden" name="ac" value="save"/>';
+				echo '<fieldset>';
+				
+				echo '<label>Type:</label>'.$this->monitor['class_name'];
+				
+				echo '<label>Name</label>';
+				echo '<input type="text" name="name" value="'.$this->monitor['name'].'">';
+				
+				// Output notification defintion
+				foreach($monitor_definition as $key=>$val){
+					
+					echo '<label>'.$key.'</label>';
+					echo '<input type="text" name="'.$key.'" value="'.$val.'">';
+				}
+				
+				echo '<label>Test Interval in Minutes:</label>
+				<input type="text" name="schedule" value="'.$this->monitor['schedule'].'">';
+				
+				echo '<label>Notification ID:</label>';
+				echo '<select name="notification_id">';
+						foreach($this->notificationList as $aNotification){
+							echo '<option value="'.$aNotification['id'].'">'.$aNotification['name'].'</option>';
+						}
+				echo '</select>';
+				
+				echo '</fieldset>';
+				echo '<button class="btn btn-primary">Save</button>';
+				echo '</form>';
+			}
+
+						
+		?>
+
+	</table>
+</div>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>

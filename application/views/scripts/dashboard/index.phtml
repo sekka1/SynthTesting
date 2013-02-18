@@ -4,7 +4,7 @@
 	<h1>Dashboard</h1>
 	
 	<a href="#newMonitorModal" role="button" class="btn btn-primary" data-toggle="modal">Add New Monitor</a>
-	<a href="#newTrapModal" role="button" class="btn btn-primary" data-toggle="modal">Add New Email Dest</a>
+	<a href="/notify/index" role="button" class="btn btn-primary" data-toggle="modal">Notifications</a>
 	
 	<br/><br/>
 	
@@ -43,7 +43,7 @@
 					    echo '</div>';
 					echo '</td>
 					<td style="width: 15%;">
-						<!--<a href="#" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>  |-->';
+						<a href="/monitor/edit/id/'.$aMonitor['monitor_id'].'" rel="tooltip" title="Edit"><i class="icon-edit"></i></a>  |';
 						
 						// Pause functionality
 						if($aMonitor['monitor_is_active']==1)

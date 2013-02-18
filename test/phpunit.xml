@@ -1,16 +1,12 @@
 <phpunit bootstrap="./bootstrap.php" colors="true" verbose="true" debug="true">
     <testsuite name="ApplicationTestSuite">
-        <directory>./application/</directory>
-        <directory>./library/</directory>
+        <directory>./</directory>
     </testsuite>
     <filter>
         <whitelist>
-            <directory suffix=".php">../application/Custom</directory>
-            <directory suffix=".php">../library</directory>
+            <directory suffix=".php">../application/</directory>
             <exclude>
-                <directory suffix=".php">application/controllers</directory>
-                <directory suffix=".php">application</directory>
-                <directory suffix=".phtml">../application/views</directory>
+                <directory suffix=".phtml">../application/</directory>
                 <file>../application/Bootstrap.php</file>
             </exclude>
         </whitelist>

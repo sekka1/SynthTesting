@@ -55,8 +55,19 @@ class NotifyController extends Zend_Controller_Action
                                 500);
 
     }
-    public function indexAction(){}
+    public function indexAction(){
+    	$this->view->isLoggedIn = $this->isLoggedIn;
+		
+		// Get all notification for this user
+		$notificationsTable = new Zend_Db_Table('notifications');
+		$select = $notificationsTable->select()->where('user_id='.$this->user_id_seq);
+		$resultsRow = $notificationsTable->fetchAll($select);
+		
+		$this->view->notifications = $resultsRow;
+    }
 	public function emailsaveAction(){
+		
+		$this->view->isLoggedIn = $this->isLoggedIn;
 		
 		$name = $this->_request->getParam('name');
 		$def['is_authenticated'] = $this->_request->getParam('is_authenticated');
@@ -68,6 +79,8 @@ class NotifyController extends Zend_Controller_Action
 		$def['subject_prefix'] = $this->_request->getParam('subject_prefix');
 		$def['domain'] = $this->_request->getParam('domain');
 		
+		$notify_id = $this->_request->getParam('notify_id');
+		
 		$notificationsTable = new Zend_Db_Table('notifications');
 		
 		$data = array(
@@ -78,9 +91,44 @@ class NotifyController extends Zend_Controller_Action
 					'created' => new Zend_Db_Expr('NOW()'),
 					'last_modified' => new Zend_Db_Expr('NOW()')
 				);
-				
-		$notificationsTable->insert($data);
 		
+		if(is_numeric($notify_id)){
+			// Editing an already existing row
+			$where[] = $notificationsTable->getAdapter()->quoteInto('user_id = ?', $this->user_id_seq);
+			$where[] = $notificationsTable->getAdapter()->quoteInto('id = ?', $notify_id);
+			$notificationsTable->update($data, $where);
+		}else{
+			// New insert
+			$notificationsTable->insert($data);
+		}
+	}
+	public function editAction(){
 		$this->view->isLoggedIn = $this->isLoggedIn;
+		
+		$notify_id = (int)$this->_request->getParam('id');
+		
+		$notificationsTable = new Zend_Db_Table('notifications');
+		$select = $notificationsTable->select()->where('user_id='.$this->user_id_seq)->where('id='.$notify_id);
+		$resultsRow = $notificationsTable->fetchRow($select);
+		
+		$this->view->notify_id = $notify_id;
+		$this->view->notification = $resultsRow;
+	}
+	/*
+	 * Generic delete a Notification
+	 */
+	public function deleteAction(){
+		$this->view->isLoggedIn = $this->isLoggedIn;
+		
+		$id = (int)$this->_request->getParam('id');
+		
+		if(is_numeric($id)){
+			$notificationTable = new Zend_Db_Table('notifications');
+			$where = array(
+						'user_id = ?' => $this->user_id_seq,
+						'id = ?' => $id
+						);
+			$notificationTable->delete($where);
+		}
 	}
 }

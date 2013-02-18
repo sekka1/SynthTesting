@@ -85,13 +85,25 @@ class MonitorController extends Zend_Controller_Action
 		$def['version'] = $request->getParam('version');
 		$data['definition'] = json_encode($def);
 		
+		$monitor_id = $this->_request->getParam('monitor_id');
+		
 		$monitorsTable = new Zend_Db_Table('monitors');
-		$monitorsTable->insert($data);
+		
+		if(is_numeric($monitor_id)){
+			// Editing an already existing row
+			$where[] = $monitorsTable->getAdapter()->quoteInto('user_id = ?', $this->user_id_seq);
+			$where[] = $monitorsTable->getAdapter()->quoteInto('id = ?', $monitor_id);
+			$monitorsTable->update($data, $where);
+		}else{
+			// New insert
+			$monitorsTable->insert($data);
+		}
 	}
 	/*
 	 * Generic delete a Monitor functionality
 	 */
 	public function deleteAction(){
+		$this->view->isLoggedIn = $this->isLoggedIn;
 		
 		$id = (int)$this->_request->getParam('id');
 		
@@ -137,5 +149,34 @@ class MonitorController extends Zend_Controller_Action
 			$data['is_active'] = 1;
 			$monitorsTable->update($data, $where);
 		}
+	 }
+	public function editAction(){
+		$this->view->isLoggedIn = $this->isLoggedIn;
+		
+		$monitor_id = (int)$this->_request->getParam('id');
+		
+		$monitorTable = new Zend_Db_Table('monitors');
+		$select = $monitorTable->select()->where('user_id='.$this->user_id_seq)->where('id='.$monitor_id);
+		$resultsRow = $monitorTable->fetchRow($select);
+		
+		$this->view->notificationList = $this->getNotificationList();
+		$this->view->monitor_id = $monitor_id;
+		$this->view->monitor = $resultsRow;
+	}
+	/*
+	 * Retrieves a list of notifications this user owns
+	 */
+	 private function getNotificationList(){
+	 	$notificationTable = new Zend_Db_Table('notifications');
+		$select = $notificationTable->select()
+									->where('user_id ='.$this->user_id_seq);
+		$resultsRow = $notificationTable->fetchAll($select);
+		$output = array();
+		foreach($resultsRow as $aRow){
+			$temp['id'] = $aRow->id;
+			$temp['name'] = $aRow->name;
+			array_push($output,$temp);
+		}
+		return $output;
 	 }
 }

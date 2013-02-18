@@ -1,0 +1,58 @@
+<br/>
+<div class="container">
+	
+	<h1>Notifications</h1>
+	
+	<br/><br/>
+	
+
+	
+	<table class="table table-striped table-bordered">
+		
+		<?php
+		
+			if($this->notification != null){
+				
+				$notification_definition = json_decode($this->notification['definition'], true);
+
+				echo '<form action="/notify/emailsave" method="post">';
+				echo '<input type="hidden" name="notify_id" value="'.$this->notify_id.'"/>';
+				echo '<fieldset>';
+				
+				echo '<label>Name</label>';
+				echo '<input type="text" name="name" value="'.$this->notification['name'].'">';
+				
+				// Output notification defintion
+				foreach($notification_definition as $key=>$val){
+					
+					echo '<label>'.$key.'</label>';
+					echo '<input type="text" name="'.$key.'" value="'.$val.'">';
+				}
+				
+				echo '</fieldset>';
+				echo '<button class="btn btn-primary">Save</button>';
+				echo '</form>';
+			}
+
+						
+		?>
+
+	</table>
+</div>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
