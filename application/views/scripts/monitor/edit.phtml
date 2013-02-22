@@ -15,7 +15,7 @@
 				
 				$monitor_definition = json_decode($this->monitor['definition'], true);
 
-				echo '<form action="/monitor/xendesktop" method="post">';
+				echo '<form action="/monitor/'.$this->monitor['class_name'].'" method="post">';
 				echo '<input type="hidden" name="monitor_id" value="'.$this->monitor_id.'"/>';
 				echo '<input type="hidden" name="class_name" value="'.$this->monitor['class_name'].'"/>';
 				echo '<input type="hidden" name="ac" value="save"/>';
@@ -30,7 +30,16 @@
 				foreach($monitor_definition as $key=>$val){
 					
 					echo '<label>'.$key.'</label>';
-					echo '<input type="text" name="'.$key.'" value="'.$val.'">';
+					
+					// Some inputs are in json which the controller would of turned into array to be outputted here.
+					// Changing it back to the original format to display to the user 
+					if(is_array($val)){
+						echo '<input type="text" name="'.$key.'" value="'.htmlentities(json_encode($val)).'">';
+					}else{
+						echo '<input type="text" name="'.$key.'" value="'.htmlentities($val).'">';
+					}
+					
+					
 				}
 				
 				echo '<label>Test Interval in Minutes:</label>

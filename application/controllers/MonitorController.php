@@ -67,11 +67,22 @@ class MonitorController extends Zend_Controller_Action
 			$this->xendesktopSave($this->_request);
 		}
 	}
+	public function apirestAction(){
+		
+		$action = $this->_request->getParam('ac');
+
+		if($action == 'save'){
+			$this->apiRestSave($this->_request);
+		}
+	}
+	/*
+	 * Saving and editing a XenDesktop monitoring
+	 */
 	private function xendesktopSave($request){
 		
 		$data['user_id'] = $this->user_id_seq;
 		$data['name'] = $request->getParam('name');
-		$data['class_name'] = 'XenDesktop';
+		$data['class_name'] = 'xendesktop';
 		$data['schedule'] = $request->getParam('schedule');
 		$data['is_active'] = 1;
 		$data['notification_id'] = $request->getParam('notification_id');
@@ -85,6 +96,45 @@ class MonitorController extends Zend_Controller_Action
 		$def['version'] = $request->getParam('version');
 		$data['definition'] = json_encode($def);
 		
+		$monitor_id = $this->_request->getParam('monitor_id');
+		
+		$monitorsTable = new Zend_Db_Table('monitors');
+		
+		if(is_numeric($monitor_id)){
+			// Editing an already existing row
+			$where[] = $monitorsTable->getAdapter()->quoteInto('user_id = ?', $this->user_id_seq);
+			$where[] = $monitorsTable->getAdapter()->quoteInto('id = ?', $monitor_id);
+			$monitorsTable->update($data, $where);
+		}else{
+			// New insert
+			$monitorsTable->insert($data);
+		}
+	}
+	/*
+	 * Saving and editing a API REST monitoring
+	 */
+	private function apiRestSave($request){
+		
+		// Standard monitoring params
+		$data['user_id'] = $this->user_id_seq;
+		$data['class_name'] = 'apirest';
+		$data['schedule'] = (int)$request->getParam('schedule');
+		$data['is_active'] = 1;
+		$data['name'] = $request->getParam('name');
+		$data['notification_id'] = (int)$request->getParam('notification_id');
+		$data['created'] = new Zend_Db_Expr('NOW()');
+		$data['last_modified'] = new Zend_Db_Expr('NOW()');
+		
+		// Monitor specific params
+		$def['url'] = $request->getParam('url');
+		$def['post_params'] = json_decode($request->getParam('post_params'), true);
+		$def['headers'] = json_decode($request->getParam('headers'), true);
+		$def['regex_check'] = $request->getParam('regex_check');
+		
+		// Encode user specific params into json
+		$data['definition'] = json_encode($def);
+		
+		// This parameter would be set if it was an edit action.  Else it would not
 		$monitor_id = $this->_request->getParam('monitor_id');
 		
 		$monitorsTable = new Zend_Db_Table('monitors');

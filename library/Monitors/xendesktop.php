@@ -40,7 +40,7 @@ if($didLaunchDesktop)
 else
 	echo "Failed to launched desktop!\n";
 */
-class XenDesktop{
+class xendesktop{
 	
 	private $ch;
 	private $cookie;

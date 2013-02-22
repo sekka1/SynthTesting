@@ -1,12 +1,12 @@
 <?php
 
-$curlMon = new CurlMon();
-$definitionInput = '{"url":"http://v1.api.algorithms.io/jobs/run/40","post_params":{"method":"sync","outputType":"json","datasources":"[3297]","type":"user","item":196},"headers":["authToken: 2cf26b0ee492b7852e92463d41705558"],"regex_check":"recommendation\":\\\[{\"id"}';
+//$curlMon = new CurlMon();
+//$definitionInput = '{"url":"http://v1.api.algorithms.io/jobs/run/40","post_params":{"method":"sync","outputType":"json","datasources":"[3297]","type":"user","item":196},"headers":["authToken: 2cf26b0ee492b7852e92463d41705558"],"regex_check":"recommendation\":\\\[{\"id"}';
 
-print_r( $curlMon->execute($definitionInput) );
+//print_r( $curlMon->execute($definitionInput) );
 
 
-class CurlMon{
+class apiRest{
 	
 	private $ch;
 	private $cookie;
