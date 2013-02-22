@@ -106,6 +106,10 @@ class XenDesktop{
 		//echo $content;
 	}
 	/*
+	 * @input json $definitionInput
+	 * 
+	 * @return bool
+	 * 
 	 * This sets the input for this monitor and will return true or false if it is able to run or not
 	 */
 	public function setRunDefinition($definitionInput){
@@ -141,6 +145,13 @@ class XenDesktop{
 		
 		return $hasAllInput;
 	}
+	/*
+	 * @input json $definitionInput
+	 * 
+	 * @return array
+	 * 
+	 * This is the main entry point for the monitor framework to call this monitor
+	 */
 	public function execute($definitionInput){
 		
 		$results = array();
