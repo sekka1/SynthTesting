@@ -75,7 +75,7 @@ class RunmonitorsController extends Zend_Controller_Action
 			foreach($monitors as $aMonitor){
 					
 				$result = $this->runMonitor($aMonitor);
-				$this->saveMonitorTestResults($aMonitor->id, $result);
+				$this->saveMonitorTestResults($aMonitor->id, $aMonitor->user_id, $result);
 				
 				// Send notifications here if needed 
 				// Only send it if the last 3 test runs were a failure
@@ -144,12 +144,13 @@ class RunmonitorsController extends Zend_Controller_Action
 			
 			return $returnVal;
 	}
-	private function saveMonitorTestResults($monitor_id, $resultArray){
+	private function saveMonitorTestResults($monitor_id, $userid, $resultArray){
 		print_r($resultArray);
 		
 		$resultsTable = new Zend_Db_Table('results');
 		
 		$data = array(
+					'user_id' => $userid,
 					'monitor_id' => $monitor_id,
 					'status' => $resultArray['up_down'],
 					'meta_data' => json_encode($resultArray['meta_data']),

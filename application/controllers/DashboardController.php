@@ -96,7 +96,8 @@ class DashboardController extends Zend_Controller_Action
 		// Get all monitors
 		$monitorsTable = new Zend_Db_Table('monitors');
 		
-		$select = $monitorsTable->select();
+		$select = $monitorsTable->select()
+								->where('user_id = '.$this->user_id_seq);
 		
 		$rows = $monitorsTable->fetchAll($select);
 		
@@ -122,7 +123,9 @@ class DashboardController extends Zend_Controller_Action
 	 
 	 	$resultsTable = new Zend_Db_Table('results');
 		
-		$select = $resultsTable->select()->where('monitor_id ='.$monitor_id)
+		$select = $resultsTable->select()
+											->where('user_id='.$this->user_id_seq)
+											->where('monitor_id ='.$monitor_id)
 											->where('created > DATE_SUB( NOW(), INTERVAL 24 HOUR)')
 											->order('created desc');
 											
@@ -156,7 +159,10 @@ class DashboardController extends Zend_Controller_Action
 		// Select each hour and massage it down to 6 points
 			foreach($currentHoursArray as $anHour){
 			
-				$select = $resultsTable->select()->where('monitor_id ='.$monitor_id)->where('hour(created) ='. $anHour);
+				$select = $resultsTable->select()
+										->where('user_id='.$this->user_id_seq)
+										->where('monitor_id ='.$monitor_id)
+										->where('hour(created) ='. $anHour);
 				
 				$resultsRow = $resultsTable->fetchAll($select);
 				
@@ -203,6 +209,7 @@ class DashboardController extends Zend_Controller_Action
 			$resultsTable = new Zend_Db_Table('results');
 			
 			$select = $resultsTable->select()
+									->where('user_id='.$this->user_id_seq)
 									->where('monitor_id ='.$monitor_id)
 									->where('created > DATE_SUB( NOW(), INTERVAL 24 HOUR)')
 									->order('created desc');
