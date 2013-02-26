@@ -1,1 +1,0 @@
-mysqldump -h ec2-107-20-202-28.compute-1.amazonaws.com -u compute Algorithms -psunshine1! > configs/Algorithms-latest.sql
