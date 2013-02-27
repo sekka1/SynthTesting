@@ -16,7 +16,7 @@ class ContactController extends Zend_Controller_Action
     {
         /* Initialize action controller here */
 
-        $this->authEmail = 'jason.chase';
+        $this->authEmail = 'jason@userrobot.com';
         $this->authPassword = 'e8tsh1t1';
         $this->smtp = 'smtp.zoho.com';
         $this->fromEmail = 'no-reply@userrobot.com';
